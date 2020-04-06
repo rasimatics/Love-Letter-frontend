@@ -3,6 +3,7 @@ version: '3.3'
 services:
   love-letter-frontend:
     container_name: love-letter-frontend
+    env_file: .env
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,6 +11,4 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - '3000:3000'
-    environment:
-      - NODE_ENV=development
+      - ${PORT}:${PORT}
