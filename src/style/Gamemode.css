@@ -1,0 +1,56 @@
+.gamemode{
+    overflow: hidden;
+}
+.guy-vector{
+    width: 15%;
+    position: absolute;
+    left: 20%;
+    bottom: 12%;
+}
+.choose-mode{
+    text-align: center;
+    font-family: RoundedMplus1c;
+    font-size: 5vw;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin: 90px auto 60px auto;
+    z-index: 1;
+}
+.mode{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn-mode{
+    width: 332px;
+    height: 96px;
+    margin-top: 30px;
+    border-radius: 60px;
+    border: solid 5px #b3355f;
+    background-color: #d95988;
+    font-family: RoundedMplus1c;
+    font-size: 36px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.help{
+    margin-top: 30px;
+    text-align: center;
+    font-family: Rounded Mplus 1c;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 53px;
+    color: #FFFFFF;
+    z-index: 1;
+}
