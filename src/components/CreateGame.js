@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cancel from '../images/vector_cancel.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,11 @@ import '../style/CreateGame.css'
 
 
 const CreateGame = () => {
+    const [player,setPlayer] = useState(4)
+
+    const change = (e)=>{
+        setPlayer(e.target.value)
+    }
     return (
         <div className="gamemode">
             <div className="choose-mode">Choose game mode</div>
@@ -16,19 +21,19 @@ const CreateGame = () => {
                 <form>
                     <div className="radio">
                         <label>
-                            <input type="radio" name="players" value="2" checked={true} />
+                            <input type="radio" onChange={change} name="players" value="2" checked={player==2} />
                                 2 Players
                         </label>
                     </div>
                     <div className="radio">
                         <label>
-                            <input type="radio" name="players"  value="3" />
+                            <input type="radio" onChange={change} name="players"  value="3" checked={player==3} />
                                 3 Players
                         </label>
                     </div>
                     <div className="radio">
                         <label>
-                            <input type="radio" name="players"  value="4" />
+                            <input type="radio" onChange={change} name="players"  value="4" checked={player==4} />
                                 4 Players
                         </label>
                     </div>
