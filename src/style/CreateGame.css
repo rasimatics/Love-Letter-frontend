@@ -1,0 +1,37 @@
+.gamemode .header {
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+}
+.gamemode form > * {
+  margin-top: 10px;
+  color: white;
+}
+.radio label{
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+.radio input{
+    margin-right: 5px;
+}
+
+.btn-next {
+  width: 332px;
+  height: 96px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  font-family: RoundedMplus1c;
+  font-size: 36px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  position: absolute;
+  bottom: 24%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}

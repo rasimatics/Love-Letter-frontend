@@ -3,16 +3,20 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Play from './components/Play';
 import Landing from './components/Landing';
 import Gamemode from './components/Gamemode';
+import JoinOrCreateGame from './components/JoinOrCreateGame'
+import CreateGame from './components/CreateGame'
 
 class App extends Component {
     render() {
         return (
-            <BrowserRouter>
+            <BrowserRouter> 
                 <div>
                     <Switch>
                         <Route path="/" component={Landing} exact />
                         <Route path="/play" component={Play} />
                         <Route path='/gamemode' component={Gamemode}/>
+                        <Route path='/join-or-create' component={JoinOrCreateGame}/>
+                        <Route path='/create-a-game' component={CreateGame}/>
                         <Route component={Error} />
                     </Switch>
                 </div>

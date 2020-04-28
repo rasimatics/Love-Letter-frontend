@@ -15,12 +15,10 @@ const Gamemode = () => {
             <button className="btn-close"><img src={cancel} /></button>
             <img className="guy-vector" src={guy_vector} alt="Not Found" />
             <div className="mode">
-                <Link to="/">
-                    <button className="btn-mode" onClick={() => setMode("splayer")}>Sigle Player</button>
-                </Link>
-                <Link to="/play">
-                    <button className="btn-mode" onClick={() => setMode("mplayer")}>Multi Player</button>
-                </Link>
+                <button className="btn-mode" onClick={()=>setMode("splayer")}>Sigle Player</button>
+                <Link to="join-or-create">
+                    <button className="btn-mode" onClick={()=>setMode("mplayer")}>Multi Player</button>
+                    </Link>
             </div>
             <div className="help">Help&FAQ</div>
             <img className="purple-vector" src={purple_vector} alt="Not Found" />

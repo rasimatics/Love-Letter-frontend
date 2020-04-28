@@ -4,22 +4,22 @@ import purple_vector from '../images/vector_puple_vector.svg'
 import robot from '../images/robot_vector.svg'
 import witch from '../images/witch_vector.svg'
 import cancel from '../images/vector_cancel.svg'
+import { Link } from 'react-router-dom'
 
 const Play = () => {
-
     const [value, setValue] = useState("")
-
     const postData = () => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nickname: value })
-        }
-        const url = "http://104.248.20.1:8080/api/player"
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ nickname: value })
+        // }
+        // const url = "http://104.248.20.1:8080/api/player"
 
-        fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(data => console.log(data))
+        // fetch(url, requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+        console.log(value,"Sent")
     }
 
     return (
@@ -34,14 +34,16 @@ const Play = () => {
                 type="text"
                 placeholder="Nickname"
             />
+            <Link to="/gamemode"> 
             <button
                 className="go-button"
                 onClick={postData}>
                 OK,GO
             </button>
+            </Link>
             <img className="witch" src={witch} alt="Not Found" />
             <img className="background-vector" src={purple_vector} alt="Not Found" />
-        </div>
+        </div >
     )
 }
 

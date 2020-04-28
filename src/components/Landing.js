@@ -21,7 +21,7 @@ const Landing = () => {
             <button className="btn-close"><img src={cancel} /></button>
             <img className="post" src={post} alt="Not Found" />
             <img className="princess" src={princess} alt="Not Found" />
-            <Link to="/gamemode"><button
+            <Link to="/play"><button
                 className="play"
             >Click to play</button>
             </Link>
