@@ -7,7 +7,7 @@ import "../style/JoinOrCreateGame.css"
 
 
 
-const JoinOrCreateGame = () => {
+const JoinOrCreateGame = (props) => {
     return (
         <div className="gamemode">
             <div className="choose-mode">Join or Create a game</div>
@@ -16,7 +16,7 @@ const JoinOrCreateGame = () => {
                 <Link to="/">
                     <button className="btn-mode" >Join Game</button>
                 </Link>
-                <Link to="/create-a-game">
+                <Link to={{pathname:"/create-a-game"}}>
                     <button className="btn-mode" >Create Game</button>
                     </Link>
             </div>

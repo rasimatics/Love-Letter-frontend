@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import  '../style/landing.css'
+import '../style/landing.css'
 import hearts from '../images/heart_hearts.svg'
 import post from '../images/letters_letters.svg'
 import cancel from '../images/vector_cancel.svg'
@@ -21,9 +21,11 @@ const Landing = () => {
             <button className="btn-close"><img src={cancel} /></button>
             <img className="post" src={post} alt="Not Found" />
             <img className="princess" src={princess} alt="Not Found" />
-            <Link to="/play"><button
-                className="play"
-            >Click to play</button>
+            <Link to="/play">
+                <button
+                    className="play"
+                    >Click to play
+                </button>
             </Link>
             <div className="buttons">
                 <button className="bottom-buttons"><img className="bottom-img" src={login} alt="Not Found" /></button>

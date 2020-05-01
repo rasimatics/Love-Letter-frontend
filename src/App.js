@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import Gamemode from './components/Gamemode';
 import JoinOrCreateGame from './components/JoinOrCreateGame'
 import CreateGame from './components/CreateGame'
+import Board from './components/Board';
 
 class App extends Component {
     render() {
@@ -17,6 +18,7 @@ class App extends Component {
                         <Route path='/gamemode' component={Gamemode}/>
                         <Route path='/join-or-create' component={JoinOrCreateGame}/>
                         <Route path='/create-a-game' component={CreateGame}/>
+                        <Route path='/game/:id' component={Board}/>
                         <Route component={Error} />
                     </Switch>
                 </div>
