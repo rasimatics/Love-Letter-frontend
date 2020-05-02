@@ -1,25 +1,10 @@
-.gamemode{
-    overflow: hidden;
-}
 .guy-vector{
     width: 15%;
     position: absolute;
     left: 20%;
     bottom: 12%;
 }
-.choose-mode{
-    text-align: center;
-    font-family: RoundedMplus1c;
-    font-size: 5vw;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
-    margin: 90px auto 60px auto;
-    z-index: 1;
-}
+
 .mode{
     display: flex;
     flex-direction: column;

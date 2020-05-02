@@ -1,9 +1,9 @@
-.gamemode .header {
+.game-page .header {
   color: white;
   font-size: 30px;
   font-weight: 600;
 }
-.gamemode form > * {
+.game-page form > * {
   margin-top: 10px;
   color: white;
 }

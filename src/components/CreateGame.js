@@ -3,6 +3,7 @@ import cancel from '../images/vector_cancel.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import { Link } from 'react-router-dom'
 import '../style/CreateGame.css'
+import '../style/Shared.css'
 
 
 
@@ -31,8 +32,8 @@ const CreateGame = () => {
 
     
     return (
-        <div className="gamemode">
-            <div className="choose-mode">Choose game mode</div>
+        <div className="game-page">
+            <div className="choose">Choose game mode</div>
             <button className="btn-close"><img src={cancel} /></button>
             <div className="mode">
                 <p className="header">Number of players:</p>

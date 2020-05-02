@@ -6,6 +6,7 @@ import Gamemode from './components/Gamemode';
 import JoinOrCreateGame from './components/JoinOrCreateGame'
 import CreateGame from './components/CreateGame'
 import Board from './components/Board';
+import JoinGame from './components/JoinGame';
 
 class App extends Component {
     render() {
@@ -19,6 +20,7 @@ class App extends Component {
                         <Route path='/join-or-create' component={JoinOrCreateGame}/>
                         <Route path='/create-a-game' component={CreateGame}/>
                         <Route path='/game/:id' component={Board}/>
+                        <Route path='/join-game' component={JoinGame}/>
                         <Route component={Error} />
                     </Switch>
                 </div>

@@ -1,0 +1,88 @@
+.game-page{
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.choose{
+    width: 847px;
+    height: 143px;
+    font-family: RoundedMplus1c;
+    font-size: 5vw;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin: 90px auto 0 auto;
+}
+
+.input-box{
+    width: 332px;
+    height: 74px;
+    border-radius: 60px;
+    border: solid 5px #b3355f;
+    background-color: #ffffff;
+    font-family: RoundedMplus1c;
+    font-size: 22px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    position: absolute;
+    top: 38%;
+    transform: translate(-50%,-50%);
+}
+
+.input-box::placeholder{
+    width: 99px;
+    height: 33px;
+    opacity: 0.5;
+    font-family: RoundedMplus1c;
+    font-size: 22px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #d95988;
+}
+
+.go-button{
+    width: 332px;
+    height: 96px;
+    border-radius: 60px;
+    border: solid 5px #b3355f;
+    background-color: #d95988;
+    font-family: RoundedMplus1c;
+    font-size: 36px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}
+
+
+.purple-vector {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-bottom: -2%;
+    z-index: -1;
+}

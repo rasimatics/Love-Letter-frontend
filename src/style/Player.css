@@ -1,0 +1,12 @@
+.player-card{
+    display: flex;
+    flex-direction: row;
+}
+.name-points {
+  position: absolute;
+  width: 300px;
+  height: 72px;
+  left: 0px;
+  background-image: url("../images/onboard_assets/dark_purple_bg_name.svg");
+  background-repeat: no-repeat;
+}

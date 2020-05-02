@@ -22,8 +22,8 @@ const Play = () => {
     }
 
     return (
-        <div className="play-page">
-            <div className="choose-nickname">Choose a Nickname</div>
+        <div className="game-page">
+            <div className="choose">Choose a Nickname</div>
             <button className="btn-close"><img src={cancel} /></button>
             <img className="robot" src={robot} alt="Not Found" />
             <input

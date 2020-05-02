@@ -1,0 +1,7 @@
+.Board {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #57426C;
+  background-image: url("../images/onboard_assets/hearts_bg.svg");
+}

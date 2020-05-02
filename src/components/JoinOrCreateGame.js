@@ -4,16 +4,17 @@ import dayday from '../images/Dayday_IceKing.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import { Link } from 'react-router-dom'
 import "../style/JoinOrCreateGame.css"
+import '../style/Shared.css'
 
 
 
-const JoinOrCreateGame = (props) => {
+const JoinOrCreateGame = () => {
     return (
-        <div className="gamemode">
-            <div className="choose-mode">Join or Create a game</div>
+        <div className="game-page">
+            <div className="choose">Join or Create a game</div>
             <button className="btn-close"><img src={cancel} /></button>
             <div className="mode">
-                <Link to="/">
+                <Link to="/join-game">
                     <button className="btn-mode" >Join Game</button>
                 </Link>
                 <Link to={{pathname:"/create-a-game"}}>
