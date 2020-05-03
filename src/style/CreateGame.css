@@ -3,16 +3,19 @@
   font-size: 30px;
   font-weight: 600;
 }
-.game-page form > * {
+
+.game-page form>* {
   margin-top: 10px;
   color: white;
 }
-.radio label{
-    font-size: 22px;
-    letter-spacing: 1px;
+
+.radio label {
+  font-size: 22px;
+  letter-spacing: 1px;
 }
-.radio input{
-    margin-right: 5px;
+
+.radio input {
+  margin-right: 5px;
 }
 
 .btn-next {
@@ -30,8 +33,20 @@
   letter-spacing: normal;
   color: #ffffff;
   position: absolute;
-  bottom: 24%;
+  bottom: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+
+.btn-return {
+  width: 70px;
+  height: 70px;
+  border-radius: 60px;
+  border: solid 0px #b3355f;
+  background-color: #d95988;
+  color: #fff;
+  position: absolute;
+  right: 10%;
+  top: 4%;
 }

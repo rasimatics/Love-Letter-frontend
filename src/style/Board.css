@@ -1,7 +1,45 @@
 .Board {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  padding: 85px 10% 70px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   background: #57426C;
   background-image: url("../images/onboard_assets/hearts_bg.svg");
+}
+
+.right-corner-images {
+  position: fixed;
+  height: 40%;
+  width: 30%;
+  right: 15%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.right-corner-images img {
+  width: 50%;
+}
+
+.right-corner-images img:nth-child(1) {
+  transform: rotateZ(-5deg);
+}
+
+.right-corner-images img:nth-child(2) {
+  transform: rotateZ(5deg);
+}
+
+.right-koloda {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  margin-top: -125px;
+  width: 5%;
+}
+
+.right-koloda img {
+  width: 100%;
 }

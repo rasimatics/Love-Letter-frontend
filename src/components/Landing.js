@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import '../style/landing.css'
+import '../style/Landing.css'
 import hearts from '../images/heart_hearts.svg'
 import post from '../images/letters_letters.svg'
 import cancel from '../images/vector_cancel.svg'

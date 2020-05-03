@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import cancel from '../images/vector_cancel.svg'
+import back from '../images/vector_return.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import guy_vector from '../images/guy_vector.svg'
 import '../style/Gamemode.css'
@@ -11,6 +12,7 @@ const Gamemode = () => {
     return (
         <div className="game-page">
             <div className="choose">Choose game mode</div>
+            <button className="btn-return"><img src={back}/></button>
             <button className="btn-close"><img src={cancel} /></button>
             <img className="guy-vector" src={guy_vector} alt="Not Found" />
             <div className="mode">

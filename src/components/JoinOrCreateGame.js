@@ -1,5 +1,6 @@
 import React  from 'react'
 import cancel from '../images/vector_cancel.svg'
+import back from '../images/vector_return.svg'
 import dayday from '../images/Dayday_IceKing.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import { Link } from 'react-router-dom'
@@ -12,6 +13,7 @@ const JoinOrCreateGame = () => {
     return (
         <div className="game-page">
             <div className="choose">Join or Create a game</div>
+            <button className="btn-return"><img src={back}/></button>
             <button className="btn-close"><img src={cancel} /></button>
             <div className="mode">
                 <Link to="/join-game">

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import cancel from '../images/vector_cancel.svg'
+import back from '../images/vector_return.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import { Link } from 'react-router-dom'
 import '../style/CreateGame.css'
 import '../style/Shared.css'
-
-
 
 const CreateGame = () => {
     const [player,setPlayer] = useState(2)
@@ -34,6 +33,7 @@ const CreateGame = () => {
     return (
         <div className="game-page">
             <div className="choose">Choose game mode</div>
+            <button className="btn-return"><img src={back}/></button>
             <button className="btn-close"><img src={cancel} /></button>
             <div className="mode">
                 <p className="header">Number of players:</p>

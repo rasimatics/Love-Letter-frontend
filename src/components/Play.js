@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import '../style/play.css'
+import '../style/Play.css'
 import purple_vector from '../images/vector_puple_vector.svg'
 import robot from '../images/robot_vector.svg'
 import witch from '../images/witch_vector.svg'
 import cancel from '../images/vector_cancel.svg'
+import back from '../images/vector_return.svg'
 import { Link } from 'react-router-dom'
 
 const Play = () => {
@@ -24,6 +25,7 @@ const Play = () => {
     return (
         <div className="game-page">
             <div className="choose">Choose a Nickname</div>
+            <button className="btn-return"><img src={back}/></button>
             <button className="btn-close"><img src={cancel} /></button>
             <img className="robot" src={robot} alt="Not Found" />
             <input
@@ -38,7 +40,7 @@ const Play = () => {
                     className="go-button"
                     onClick={postData}>
                     OK,GO
-            </button>
+                </button>
             </Link>
             <img className="witch" src={witch} alt="Not Found" />
             <img className="background-vector" src={purple_vector} alt="Not Found" />
