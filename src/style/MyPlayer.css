@@ -93,3 +93,25 @@ body {
 .Board .player-card-last .hearts-container {
   margin-top: 3px;
 }
+
+.right-corner-images {
+  position: fixed;
+  height: 40%;
+  width: 30%;
+  right: 15%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.right-corner-images img {
+  width: 50%;
+}
+
+.right-corner-images img:nth-child(1) {
+  transform: rotateZ(-5deg);
+}
+
+.right-corner-images img:nth-child(2) {
+  transform: rotateZ(5deg);
+}

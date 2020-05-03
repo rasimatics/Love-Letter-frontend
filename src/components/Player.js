@@ -4,7 +4,7 @@ import heartPink from '../images/onboard_assets/pink_heart.svg'
 import heartWhite from '../images/onboard_assets/white_heart.svg'
 import '../style/Player.css'
 
-const Player = () => {
+const Player = (props) => {
 
     return (
             <div className="player-card">
@@ -12,7 +12,7 @@ const Player = () => {
                     <img src={orangeCrown}/>
                 </div>
                 <div className="name-hearts-container">
-                    <h4>Anar</h4>
+                    <h4>{props.name}</h4>
                     <div className="hearts-container">
                         <img src={heartPink} />
                         <img src={heartPink} />

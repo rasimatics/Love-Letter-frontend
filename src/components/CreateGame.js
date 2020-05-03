@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import cancel from '../images/vector_cancel.svg'
 import back from '../images/vector_return.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
-import { Link } from 'react-router-dom'
 import '../style/CreateGame.css'
 import '../style/Shared.css'
 
@@ -10,13 +9,13 @@ const CreateGame = () => {
     const [player,setPlayer] = useState(2)
 
     const id = localStorage.getItem("id")
-    console.log(id)
 
     const change = (e)=>{
         setPlayer(e.target.value)
     }
     const createGame = (e) => {
         e.preventDefault()
+        localStorage.setItem("n_players",player)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

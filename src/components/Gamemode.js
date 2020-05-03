@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import cancel from '../images/vector_cancel.svg'
 import back from '../images/vector_return.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
