@@ -20,9 +20,33 @@
 .right-koloda img {
   width: 100%;
 }
+
 .inHand {
   opacity: 0;
+  transition: 5s ease-in-out;
 }
+
+@keyframes myFirstCard {
+  0% {
+    opacity: 0;
+    right: 10px;
+    bottom: 30%;
+    transform: rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    right: 32%;
+    bottom: 13px;
+    transform: rotate(352deg);
+  }
+  100%{
+    opacity: 0;
+    right: 32%;
+    bottom: 13px;
+    transform: rotateY(90deg);
+  }
+}
+
 .myCard {
   position: absolute;
   opacity: 0;
@@ -33,32 +57,22 @@
   animation-fill-mode: forwards;
 }
 @keyframes myCard {
-  from {
+  0% {
     opacity: 0;
     right: 10px;
     bottom: 30%;
     transform: rotate(0deg);
   }
-  to {
+  70% {
     opacity: 1;
     right: 15%;
     bottom: 13px;
     transform: rotate(365deg);
   }
-}
-@keyframes myCardOpen {
-  from {
-    opacity: 1;
-    right: 15%;
-    bottom: 13px;
-    transform: rotateX(0deg);
-    transform: rotateY(0deg);
-  }
-  to {
+  100%{
     opacity: 0;
     right: 15%;
     bottom: 13px;
-    transform: rotateX(10deg);
     transform: rotateY(90deg);
   }
 }
