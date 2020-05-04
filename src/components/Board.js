@@ -13,6 +13,7 @@ import card6 from '../images/love_cards/cards_loveletter-06.svg'
 import card7 from '../images/love_cards/cards_loveletter-07.svg'
 import card8 from '../images/love_cards/cards_loveletter-08.svg'
 import bcard from '../images/love_cards/cards_loveletter-09.svg'
+import Discard from './Discard';
 
 
 const ENDPOINT = "http://104.248.20.1:8080";
@@ -20,12 +21,16 @@ const ENDPOINT = "http://104.248.20.1:8080";
 const Board = () => {
     const [handCard,setHandCard] = useState(card7)
     const [newCard,setNewCard] = useState()
-    
+    const [mystars,setMystars] = useState(0)
+
+    const [mydiscard,setMyDiscard] = useState([card4,card5,card6])
+
     let n_players = parseInt(localStorage.getItem("n_players"))
 
     let players = []
+
     for (let i = 0; i < n_players - 1; i++) {
-        players.push(<Player name={"Anar"} />)
+        players.push(<Player name={"Anar"} stars={mystars} />)
     }
 
     const playerOneCard = ()=>{
@@ -67,7 +72,8 @@ const Board = () => {
             setTimeout(()=>playerTwoCard(),3000)
             setTimeout(()=>playerThreeCard(),4000)
             setTimeout(()=>newCardtoMe(),5000)   
-        }else if(n_players === 3){
+        }
+        else if(n_players === 3){
             setTimeout(()=>myFirstCard(),1000)  
             setTimeout(()=>playerOneCard(),2000)
             setTimeout(()=>playerThreeCard(),3000)
@@ -83,18 +89,23 @@ const Board = () => {
     return (
         <div>
             <div className="Board">
-                <img className="player one" src={bcard} />
-                <img className="player two" src={bcard} />
-                <img className="player three" src={bcard} />
+                <img className="player one" src={bcard} alt="" />
+                <img className="player two" src={bcard} alt="" />
+                <img className="player three" src={bcard} alt="" />
+                
                 {players}
-                <MyPlayer name="Nigar" />
+
+                <MyPlayer name="Nigar" stars={mystars} discard={mydiscard}/>
+
                 <div className="right-corner-images">
-                    <img className="inHand" src={handCard} />
-                    <img className="newCard" src={newCard} />
+                    <img className="inHand" src={handCard} alt="" />
+                    <img className="newCard" src={newCard} alt="" />
                 </div>
+
                 <img className="myCard" src={bcard} />
+
                 <div onClick={startGame} className="right-koloda">
-                    <img src={koloda} />
+                    <img src={koloda} alt="" />
                 </div>
             </div>
         </div>
