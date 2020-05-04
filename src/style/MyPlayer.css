@@ -2,10 +2,13 @@ body {
   overflow: hidden;
 }
 
-.player-card {
+.myplayer-card {
   background-color: #4f3162;
   border-radius: 30px;
-  width: 32%;
+  position: absolute;
+  bottom: 13%;
+  left: 10.5%;
+  width: 25%;
   height: 35vh;
 }
 

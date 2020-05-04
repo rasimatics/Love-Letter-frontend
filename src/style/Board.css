@@ -4,7 +4,7 @@
   height: 100vh;
   padding: 85px 10% 70px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   background: #57426C;
   background-image: url("../images/onboard_assets/hearts_bg.svg");
