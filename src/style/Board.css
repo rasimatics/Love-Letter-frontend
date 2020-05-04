@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  background: #57426C;
+  background: #57426c;
   background-image: url("../images/onboard_assets/hearts_bg.svg");
 }
 .right-koloda {
@@ -20,3 +20,138 @@
 .right-koloda img {
   width: 100%;
 }
+.inHand {
+  opacity: 0;
+}
+.myCard {
+  position: absolute;
+  opacity: 0;
+  width: 15%;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes myCard {
+  from {
+    opacity: 0;
+    right: 10px;
+    bottom: 30%;
+    transform: rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    right: 15%;
+    bottom: 13px;
+    transform: rotate(365deg);
+  }
+}
+@keyframes myCardOpen {
+  from {
+    opacity: 1;
+    right: 15%;
+    bottom: 13px;
+    transform: rotateX(0deg);
+    transform: rotateY(0deg);
+  }
+  to {
+    opacity: 0;
+    right: 15%;
+    bottom: 13px;
+    transform: rotateX(10deg);
+    transform: rotateY(90deg);
+  }
+}
+
+.newCard {
+  opacity: 0;
+  transition: 5s ease-in-out;
+}
+
+.player {
+  position: absolute;
+  width: 20%;
+  opacity: 0;
+  transition: 2s ease-in-out;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes playerOne {
+  0% {
+    opacity: 0;
+    right: 10px;
+    bottom: 30%;
+    width: 20%;
+    transform: rotate(0deg);
+  }
+  90% {
+    opacity: 1;
+    width: 3%;
+    right: 80%;
+    bottom: 80%;
+    transform: rotate(300deg);
+  }
+
+  100%{
+    opacity: 0;
+    width: 1%;
+    right: 80%;
+    bottom: 80%;
+    transform: rotate(380deg);
+  }
+}
+
+@keyframes playerTwo {
+  0% {
+    opacity: 0;
+    right: 10px;
+    bottom: 30%;
+    width: 20%;
+    transform: rotate(0deg);
+  }
+  90% {
+    opacity: 1;
+    width: 3%;
+    right: 50%;
+    bottom: 80%;
+    transform: rotate(300deg);
+  }
+
+  100%{
+    opacity: 0;
+    width: 1%;
+    right: 50%;
+    bottom: 80%;
+    transform: rotate(380deg);
+  }
+}
+
+
+@keyframes playerThree {
+  0% {
+    opacity: 0;
+    right: 10px;
+    bottom: 30%;
+    width: 20%;
+    transform: rotate(0deg);
+  }
+  90% {
+    opacity: 1;
+    width: 3%;
+    right: 20%;
+    bottom: 80%;
+    transform: rotate(300deg);
+  }
+
+  100%{
+    opacity: 0;
+    width: 1%;
+    right: 20%;
+    bottom: 80%;
+    transform: rotate(380deg);
+  }
+}
+
