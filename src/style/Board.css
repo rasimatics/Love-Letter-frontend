@@ -104,7 +104,7 @@
   90% {
     opacity: 1;
     width: 3%;
-    right: 80%;
+    right: 72%;
     bottom: 80%;
     transform: rotate(300deg);
   }
@@ -112,7 +112,7 @@
   100%{
     opacity: 0;
     width: 1%;
-    right: 80%;
+    right: 72%;
     bottom: 80%;
     transform: rotate(380deg);
   }
@@ -155,7 +155,7 @@
   90% {
     opacity: 1;
     width: 3%;
-    right: 20%;
+    right: 24%;
     bottom: 80%;
     transform: rotate(300deg);
   }
@@ -163,7 +163,7 @@
   100%{
     opacity: 0;
     width: 1%;
-    right: 20%;
+    right: 25%;
     bottom: 80%;
     transform: rotate(380deg);
   }

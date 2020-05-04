@@ -20,12 +20,8 @@ const ENDPOINT = "http://104.248.20.1:8080";
 const Board = () => {
     const [handCard,setHandCard] = useState(card7)
     const [newCard,setNewCard] = useState()
+    
     let n_players = parseInt(localStorage.getItem("n_players"))
-
-    // let deck = [card1, card1, card1, card1, card1, card2, card2, card3, card3, card4, card4, card5, card5,
-    //     card6, card6, card7, card8]
-
-    // console.log(deck);
 
     let players = []
     for (let i = 0; i < n_players - 1; i++) {
@@ -65,11 +61,22 @@ const Board = () => {
 
     const startGame = () => {
         setNewCard(card8)
-        setTimeout(()=>myFirstCard(),1000)  
-        setTimeout(()=>playerOneCard(),2000)
-        setTimeout(()=>playerTwoCard(),3000)
-        setTimeout(()=>playerThreeCard(),4000)
-        setTimeout(()=>newCardtoMe(),5000)   
+        if(n_players === 4){
+            setTimeout(()=>myFirstCard(),1000)  
+            setTimeout(()=>playerOneCard(),2000)
+            setTimeout(()=>playerTwoCard(),3000)
+            setTimeout(()=>playerThreeCard(),4000)
+            setTimeout(()=>newCardtoMe(),5000)   
+        }else if(n_players === 3){
+            setTimeout(()=>myFirstCard(),1000)  
+            setTimeout(()=>playerOneCard(),2000)
+            setTimeout(()=>playerThreeCard(),3000)
+            setTimeout(()=>newCardtoMe(),4000)   
+        }else{
+            setTimeout(()=>myFirstCard(),1000)  
+            setTimeout(()=>playerTwoCard(),2000)
+            setTimeout(()=>newCardtoMe(),3000)   
+        }  
     }
 
     
