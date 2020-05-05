@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import socketIOClient from 'socket.io-client'
 import Player from './Player';
 import MyPlayer from './MyPlayer';
@@ -13,7 +13,6 @@ import card6 from '../images/love_cards/cards_loveletter-06.svg'
 import card7 from '../images/love_cards/cards_loveletter-07.svg'
 import card8 from '../images/love_cards/cards_loveletter-08.svg'
 import bcard from '../images/love_cards/cards_loveletter-09.svg'
-import Discard from './Discard';
 
 const ENDPOINT = "http://104.248.20.1:8080";
 const socket = socketIOClient(ENDPOINT);
@@ -30,8 +29,8 @@ const Board = () => {
 
     let players = []
 
-    useEffect(()=>{
-        socket.on("join-player",data => console.log(data))
+    useEffect(() => {
+        socket.on("join-player", data => console.log(data))
         socket.on("player", data => console.log(data));
         socket.on("game", data => console.log(data));
     })
@@ -98,7 +97,7 @@ const Board = () => {
 
                 {players}
 
-                <MyPlayer name={localStorage.getItem("id")} stars={mystars} mydiscard={mydiscard}/>
+                <MyPlayer name={localStorage.getItem("id")} stars={mystars} mydiscard={mydiscard} />
 
                 <div className="right-corner-images">
                     <img className="inHand" src={handCard} alt="" />

@@ -14,12 +14,6 @@ const CreateGame = () => {
 
     const id = localStorage.getItem("id")
 
-    useEffect(()=>{
-        socket.on("player", data => console.log(data));
-        socket.on("game", data => console.log(data));
-    })
-
-
     const change = (e) => {
         setPlayer(e.target.value)
     }
@@ -49,7 +43,6 @@ const CreateGame = () => {
                         id: gameID
                     }
                 })
-
             window.open("/game/" + gameID, "_self")
         }, 1000)
     }
