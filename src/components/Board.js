@@ -19,36 +19,36 @@ import Discard from './Discard';
 const ENDPOINT = "http://104.248.20.1:8080";
 
 const Board = () => {
-    const [handCard,setHandCard] = useState(card7)
-    const [newCard,setNewCard] = useState()
-    const [mystars,setMystars] = useState(0)
+    const [handCard, setHandCard] = useState(card7)
+    const [newCard, setNewCard] = useState()
+    const [mystars, setMystars] = useState(0)
 
-    const [mydiscard,setMyDiscard] = useState([card4,card5,card6])
+    const [mydiscard, setMyDiscard] = useState([card4, card5, card6])
 
     let n_players = parseInt(localStorage.getItem("n_players"))
 
     let players = []
 
     for (let i = 0; i < n_players - 1; i++) {
-        players.push(<Player name={"Anar"} stars={mystars} />)
+        players.push(<Player name={"Anar"} stars={mystars} mydiscard={mydiscard} />)
     }
 
-    const playerOneCard = ()=>{
+    const playerOneCard = () => {
         document.getElementsByClassName("one")[0].style.animationName = "playerOne"
-        setTimeout(()=> document.getElementsByClassName("one")[0].style.animationName = "",3000)
+        setTimeout(() => document.getElementsByClassName("one")[0].style.animationName = "", 3000)
     }
 
-    const playerTwoCard = ()=>{
+    const playerTwoCard = () => {
         document.getElementsByClassName("two")[0].style.animationName = "playerTwo"
-        setTimeout(()=> document.getElementsByClassName("two")[0].style.animationName = "",3000)
+        setTimeout(() => document.getElementsByClassName("two")[0].style.animationName = "", 3000)
     }
 
-    const playerThreeCard = ()=>{
+    const playerThreeCard = () => {
         document.getElementsByClassName("three")[0].style.animationName = "playerThree"
-        setTimeout(()=> document.getElementsByClassName("three")[0].style.animationName = "",3000)
+        setTimeout(() => document.getElementsByClassName("three")[0].style.animationName = "", 3000)
     }
 
-    const myFirstCard = ()=>{
+    const myFirstCard = () => {
         document.getElementsByClassName("myCard")[0].style.animationName = "myFirstCard"
         setTimeout(() => {
             document.getElementsByClassName("inHand")[0].style.opacity = "1"
@@ -66,36 +66,36 @@ const Board = () => {
 
     const startGame = () => {
         setNewCard(card8)
-        if(n_players === 4){
-            setTimeout(()=>myFirstCard(),1000)  
-            setTimeout(()=>playerOneCard(),2000)
-            setTimeout(()=>playerTwoCard(),3000)
-            setTimeout(()=>playerThreeCard(),4000)
-            setTimeout(()=>newCardtoMe(),5000)   
+        if (n_players === 4) {
+            setTimeout(() => myFirstCard(), 1000)
+            setTimeout(() => playerOneCard(), 2000)
+            setTimeout(() => playerTwoCard(), 3000)
+            setTimeout(() => playerThreeCard(), 4000)
+            setTimeout(() => newCardtoMe(), 5000)
         }
-        else if(n_players === 3){
-            setTimeout(()=>myFirstCard(),1000)  
-            setTimeout(()=>playerOneCard(),2000)
-            setTimeout(()=>playerThreeCard(),3000)
-            setTimeout(()=>newCardtoMe(),4000)   
-        }else{
-            setTimeout(()=>myFirstCard(),1000)  
-            setTimeout(()=>playerTwoCard(),2000)
-            setTimeout(()=>newCardtoMe(),3000)   
-        }  
+        else if (n_players === 3) {
+            setTimeout(() => myFirstCard(), 1000)
+            setTimeout(() => playerOneCard(), 2000)
+            setTimeout(() => playerThreeCard(), 3000)
+            setTimeout(() => newCardtoMe(), 4000)
+        } else {
+            setTimeout(() => myFirstCard(), 1000)
+            setTimeout(() => playerTwoCard(), 2000)
+            setTimeout(() => newCardtoMe(), 3000)
+        }
     }
 
-    
+
     return (
         <div>
             <div className="Board">
                 <img className="player one" src={bcard} alt="" />
                 <img className="player two" src={bcard} alt="" />
                 <img className="player three" src={bcard} alt="" />
-                
+
                 {players}
 
-                <MyPlayer name="Nigar" stars={mystars} discard={mydiscard}/>
+                <MyPlayer name="Nigar" stars={mystars} mydiscard={mydiscard}/>
 
                 <div className="right-corner-images">
                     <img className="inHand" src={handCard} alt="" />

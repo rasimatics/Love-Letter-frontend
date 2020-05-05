@@ -1,4 +1,5 @@
 import React from 'react'
+import Discard from './Discard'
 import orangeCrown from '../images/onboard_assets/orange_crown.svg'
 import heartPink from '../images/onboard_assets/pink_heart.svg'
 import heartWhite from '../images/onboard_assets/white_heart.svg'
@@ -24,6 +25,7 @@ const Player = (props) => {
                         {stars}
                     </div> 
                 </div>
+                <Discard mydiscard={props.mydiscard}/>
             </div>
     )
 }

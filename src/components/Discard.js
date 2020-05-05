@@ -1,11 +1,10 @@
 import React from 'react'
+import "../style/Discard.css"
 
 const Discard = (props) => {
-    let cards = props.discard
-    console.log(cards)
     return (
-        <div>
-            Discarded cards
+        <div className="discard">
+            {props.mydiscard.map((card, index) =><img key={index} className="dcard" src={card} />)}
         </div>
     )
 }
