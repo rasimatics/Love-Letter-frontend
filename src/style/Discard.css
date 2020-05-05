@@ -1,0 +1,13 @@
+.discard{
+    display: flex;
+    flex-direction: row;
+    margin-left: 33%;
+    margin-top: -6%;
+}
+.discard *{
+    margin-left: -50%;
+}
+
+.dcard{
+    width: 65%;
+}
