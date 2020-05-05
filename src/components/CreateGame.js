@@ -4,58 +4,84 @@ import back from '../images/vector_return.svg'
 import purple_vector from '../images/vector_puple_vector.svg'
 import '../style/CreateGame.css'
 import '../style/Shared.css'
+import socketIOClient from 'socket.io-client'
+
+const ENDPOINT = "http://104.248.20.1:8080";
+const socket = socketIOClient(ENDPOINT);
 
 const CreateGame = () => {
-    const [player,setPlayer] = useState(2)
+    const [player, setPlayer] = useState(2)
 
     const id = localStorage.getItem("id")
 
-    const change = (e)=>{
+    useEffect(()=>{
+        socket.on("player", data => console.log(data));
+        socket.on("game", data => console.log(data));
+    })
+
+
+    const change = (e) => {
         setPlayer(e.target.value)
     }
     const createGame = (e) => {
         e.preventDefault()
-        localStorage.setItem("n_players",player)
+        localStorage.setItem("n_players", player)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ n_players: player,created_by_player_id:id})
+            body: JSON.stringify({ n_players: player, created_by_player_id: id })
         }
         const url = "http://104.248.20.1:8080/api/game/"
 
+        let gameID;
+
         fetch(url, requestOptions)
             .then(response => response.json())
-            .then(data => window.open("/game/"+data.id,"_self"))
+            .then(data => gameID = data.id)
+
+        setTimeout(() => {
+            socket.emit('join-game',
+                {
+                    player: {
+                        id: localStorage.getItem("id")
+                    },
+                    game: {
+                        id: gameID
+                    }
+                })
+
+            window.open("/game/" + gameID, "_self")
+        }, 1000)
     }
 
-    
+
     return (
         <div className="game-page">
             <div className="choose">Choose game mode</div>
-            <button className="btn-return"><img src={back}/></button>
+            <button className="btn-return"><img src={back} /></button>
             <button className="btn-close"><img src={cancel} /></button>
             <div className="mode">
                 <p className="header">Number of players:</p>
                 <form onSubmit={createGame}>
                     <div className="radio">
                         <label>
-                            <input type="radio" onChange={change} name="players" value="2" checked={player==2} />
+                            <input type="radio" onChange={change} name="players" value="2" checked={player == 2} />
                                 2 Players
                         </label>
                     </div>
                     <div className="radio">
                         <label>
-                            <input type="radio" onChange={change} name="players"  value="3" checked={player==3} />
+                            <input type="radio" onChange={change} name="players" value="3" checked={player == 3} />
                                 3 Players
                         </label>
                     </div>
                     <div className="radio">
                         <label>
-                            <input type="radio" onChange={change} name="players"  value="4" checked={player==4} />
+                            <input type="radio" onChange={change} name="players" value="4" checked={player == 4} />
                                 4 Players
                         </label>
                     </div>
-                    <input className="btn-next" type="submit" value="Next"/>
+                    <input className="btn-next" type="submit" value="Next" />
                 </form>
 
             </div>
