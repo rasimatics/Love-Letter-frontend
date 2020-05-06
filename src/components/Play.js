@@ -20,6 +20,7 @@ const Play = () => {
         fetch(url, requestOptions)
             .then(response => response.json())
             .then(data => localStorage.setItem("id",data.id))
+        localStorage.setItem("nickname",value)
     }
 
     return (
