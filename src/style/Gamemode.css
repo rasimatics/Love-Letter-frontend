@@ -1,54 +1,48 @@
 .guy-vector {
-    width: 15%;
-    position: absolute;
-    left: 20%;
-    bottom: 12%;
+  width: 15%;
+  position: absolute;
+  left: 20%;
+  bottom: 12%;
 }
 
 .mode {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "M PLUS Rounded 1c", sans-serif;
 }
 
 .btn-mode {
-    width: 332px;
-    height: 96px;
-    margin-top: 30px;
-    border-radius: 60px;
-    border: solid 5px #b3355f;
-    background-color: #d95988;
-    font-family: RoundedMplus1c;
-    font-size: 36px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
-    z-index: 1;
+  width: 332px;
+  height: 96px;
+  margin-top: 30px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  z-index: 1;
+  outline: none;
 }
 
-.btn-return {
-    width: 70px;
-    height: 70px;
-    border-radius: 60px;
-    border: solid 0px #b3355f;
-    background-color: #d95988;
-    color: #fff;
-    position: absolute;
-    right: 10%;
-    top: 4%;
+.btn-mode:hover {
+  background-color: #b3355f;
 }
 
 .help {
-    margin-top: 30px;
-    text-align: center;
-    font-family: Rounded Mplus 1c;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 53px;
-    color: #FFFFFF;
-    z-index: 1;
+  margin-top: 30px;
+  text-align: center;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 53px;
+  color: #ffffff;
+  z-index: 1;
 }

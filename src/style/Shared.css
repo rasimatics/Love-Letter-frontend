@@ -1,88 +1,136 @@
-.game-page{
-    position:fixed;
-    padding:0;
-    margin:0;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
+.game-page {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-.choose{
-    width: 847px;
-    height: 143px;
-    font-family: RoundedMplus1c;
-    font-size: 5vw;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
-    margin: 90px auto 0 auto;
+.choose {
+  width: 847px;
+  height: 143px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 70px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin: 90px auto 0 auto;
 }
 
-.input-box{
-    width: 332px;
-    height: 74px;
-    border-radius: 60px;
-    border: solid 5px #b3355f;
-    background-color: #ffffff;
-    font-family: RoundedMplus1c;
-    font-size: 22px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    position: absolute;
-    top: 38%;
-    transform: translate(-50%,-50%);
+.input-box {
+  width: 300px;
+  height: 60px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #ffffff;
+  color: #d95988;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  position: absolute;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  outline: none;
 }
 
-.input-box::placeholder{
-    width: 99px;
-    height: 33px;
-    opacity: 0.5;
-    font-family: RoundedMplus1c;
-    font-size: 22px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #d95988;
+.input-box::placeholder {
+  width: 99px;
+  height: 33px;
+  opacity: 0.5;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #d95988;
 }
 
-.go-button{
-    width: 332px;
-    height: 96px;
-    border-radius: 60px;
-    border: solid 5px #b3355f;
-    background-color: #d95988;
-    font-family: RoundedMplus1c;
-    font-size: 36px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
-    position: absolute;
-    top: 54%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 1;
+.btn-close {
+  width: 70px;
+  height: 70px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  box-sizing: border-box;
+  color: #fff;
+  position: absolute;
+  right: 4%;
+  top: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
 }
 
+.btn-close:hover {
+  background-color: #b3355f;
+}
+
+.btn-return {
+  width: 70px;
+  height: 70px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  box-sizing: border-box;
+  color: #fff;
+  position: absolute;
+  right: 10%;
+  top: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.btn-return:hover {
+  background-color: #b3355f;
+}
+
+.go-button {
+  width: 300px;
+  height: 80px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  outline: none;
+}
+
+.go-button:hover {
+  background-color: #b3355f;
+}
 
 .purple-vector {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin-bottom: -2%;
-    z-index: -1;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -2%;
+  z-index: -1;
 }
