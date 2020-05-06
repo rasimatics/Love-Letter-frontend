@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import cancel from '../images/vector_cancel.svg'
 import back from '../images/vector_return.svg'
 import dayday from '../images/Dayday_IceKing.svg'
@@ -8,20 +8,19 @@ import "../style/JoinOrCreateGame.css"
 import '../style/Shared.css'
 
 
-
 const JoinOrCreateGame = () => {
     return (
         <div className="game-page">
             <div className="choose">Join or Create a game</div>
-            <button className="btn-return"><img src={back}/></button>
+            <button className="btn-return"><img src={back} /></button>
             <button className="btn-close"><img src={cancel} /></button>
             <div className="mode">
                 <Link to="/join-game">
                     <button className="btn-mode" >Join Game</button>
                 </Link>
-                <Link to={{pathname:"/create-a-game"}}>
+                <Link to={{ pathname: "/create-a-game" }}>
                     <button className="btn-mode" >Create Game</button>
-                    </Link>
+                </Link>
             </div>
             <img className="right_vector" src={dayday} alt="Not Found" />
             <div className="help">Help&FAQ</div>

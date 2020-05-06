@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import socketIOClient from 'socket.io-client'
 import Player from './Player';
 import MyPlayer from './MyPlayer';
@@ -14,26 +14,39 @@ import card7 from '../images/love_cards/cards_loveletter-07.svg'
 import card8 from '../images/love_cards/cards_loveletter-08.svg'
 import bcard from '../images/love_cards/cards_loveletter-09.svg'
 
-const ENDPOINT = "http://104.248.20.1:8080";
-const socket = socketIOClient(ENDPOINT);
+import { socket } from '../helpers/socket'
 
 const Board = () => {
     const [handCard, setHandCard] = useState(card7)
     const [newCard, setNewCard] = useState()
     const [mystars, setMystars] = useState(0)
-
     const [mydiscard, setMyDiscard] = useState([card4, card5, card6])
+    const [players, setPlayers] = useState([])
 
 
     let n_players = parseInt(localStorage.getItem("n_players"))
 
-    let players = []
+    socket.on("err", data => console.log(data))
+    socket.on("join-game", data => console.log("Join", data));
+    socket.on("player", data => console.log("Player", data));
+    socket.on("game", data => { localStorage.setItem("players", JSON.stringify(data.players)); setPlayers(data.players); console.log(data) });
 
-    useEffect(() => {
-        socket.on("join-player", data => console.log(data))
-        socket.on("player", data => console.log(data));
-        socket.on("game", data => console.log(data));
-    })
+    socket.emit('join-game',
+        {
+            player: {
+                id: localStorage.getItem("id")
+            },
+            game: {
+                id: localStorage.getItem("gid")
+            }
+        })
+
+    document.onkeydown = (event) => {
+        if (event.keyCode == 116)
+            event.preventDefault()
+    }
+
+    window.stop();
 
     const playerOneCard = () => {
         document.getElementsByClassName("one")[0].style.animationName = "playerOne"
@@ -95,9 +108,9 @@ const Board = () => {
                 <img className="player two" src={bcard} alt="" />
                 <img className="player three" src={bcard} alt="" />
 
-                {players}
+                {players.map(player => player.id != localStorage.getItem("id") && <Player key={player.id} name={player.id} mydiscard={[]} />)}
 
-                <MyPlayer name={localStorage.getItem("id")} stars={mystars} mydiscard={mydiscard} />
+                <MyPlayer name={localStorage.getItem("id")} stars={mystars} mydiscard={[]} />
 
                 <div className="right-corner-images">
                     <img className="inHand" src={handCard} alt="" />
