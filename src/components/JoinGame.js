@@ -2,19 +2,37 @@ import React, { useState, useEffect } from 'react'
 import purple_vector from '../images/vector_puple_vector.svg'
 import cancel from '../images/vector_cancel.svg'
 import '../style/Shared.css'
-import  {socket} from '../helpers/socket'
+import { socket } from '../helpers/socket'
 
 
 const JoinGame = () => {
     const [value, setValue] = useState("")
 
+    let err = ""
+
+    useEffect(() => {
+        socket.on("err", data => err=data.msg)
+    })
+
     //Join to the game
     const handleJoin = () => {
-        localStorage.setItem("gid",value)
-
+        localStorage.setItem("gid", value)
+        socket.emit('join-game',
+            {
+                player: {
+                    id: localStorage.getItem("id")
+                },
+                game: {
+                    id: localStorage.getItem("gid")
+                }
+            })
         setTimeout(() => {
-            window.open("/game/" + value, "_self")
-        }, 1000);
+            if (err === "") {
+                window.open("/game/" + value, "_self")
+            }else {
+                alert(err)
+            }
+        },1000)
     }
 
 

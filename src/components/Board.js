@@ -24,36 +24,26 @@ const Board = () => {
     const [players, setPlayers] = useState([])
 
 
-    let n_players = parseInt(localStorage.getItem("n_players"))
+    //let n_players = parseInt(localStorage.getItem("n_players"))
+    let n_players = -1
+    let deck = null
 
-    socket.on("err", data => console.log(data))
-    socket.on("player", data => console.log("Player", data));
-    socket.on("game", data => { 
-        setPlayers(data.players);
-        console.log("Game",data) 
-    });
-
+    socket.on("err", data => alert(data.msg))
+  
     useEffect(() => {
-        const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
-        fetch(URL).then(response => response.json())
-            .then(data => {
-                console.log("api",data)
-                if (data.players.find(player => player.id === localStorage.getItem("id"))==undefined) {
-                    socket.emit('join-game',
-                        {
-                            player: {
-                                id: localStorage.getItem("id")
-                            },
-                            game: {
-                                id: localStorage.getItem("gid")
-                            }
-                        })
-                }
-                // get data if page is reloaded
-                if (players.length == 0) {
+        setInterval(() => {
+            const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
+            fetch(URL).then(response => response.json())
+                .then(data => {
+                    console.log("api", data)
                     setPlayers(data.players)
-                }
-            })
+                    n_players = data.n_players
+                    deck = data.deck
+
+                })
+        }, 2000)
+        if(deck !==null)
+            startGame()
     }, [])
 
     const playerOneCard = () => {

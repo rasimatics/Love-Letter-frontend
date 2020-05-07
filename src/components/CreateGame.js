@@ -14,11 +14,16 @@ const CreateGame = () => {
         setPlayer(e.target.value)
     }
 
+    useEffect(() => {
+        socket.on("err", data => alert(data.msg))
+    })
+
     //Create a game and then join
     const createGame = (e) => {
         e.preventDefault()
 
         localStorage.setItem("n_players", player)
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -30,11 +35,23 @@ const CreateGame = () => {
 
         fetch(url, requestOptions)
             .then(response => response.json())
-            .then(data =>{ gameID = data.id; localStorage.setItem("gid",gameID)})
+            .then(data => { gameID = data.id; localStorage.setItem("gid", gameID) })
+
+        setTimeout(() => {
+            socket.emit('join-game',
+                {
+                    player: {
+                        id: localStorage.getItem("id")
+                    },
+                    game: {
+                        id: localStorage.getItem("gid")
+                    }
+                })
+        }, 1000)
 
         setTimeout(() => {
             window.open("/game/" + gameID, "_self")
-        }, 1000);
+        }, 2000);
     }
 
 
