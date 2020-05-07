@@ -26,7 +26,7 @@ body {
   top: -10px;
 }
 
-.crown-container {
+.crown-container-myplayer {
   width: 100%;
   height: 5px;
   display: flex;
@@ -34,15 +34,15 @@ body {
   align-items: center;
 }
 
-.crown-container img {
-  width: 70px;
-  height: 70px;
+.crown-container-myplayer img {
   position: relative;
+  width: 60px;
+  height: 70px;
   top: -52px;
   z-index: 5;
 }
 
-.name-hearts-container {
+.name-hearts-container-myplayer {
   background-color: #342642;
   width: 70%;
   border-radius: 20px;
@@ -55,22 +55,22 @@ body {
   align-items: center;
 }
 
-.name-hearts-container h4 {
+.name-hearts-container-myplayer h4 {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
-  font-family: sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: normal;
   margin-top: 3px;
 }
 
-.hearts-container {
+.hearts-container-myplayer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hearts-container img {
+.hearts-container-myplayer img {
   margin: 0 3px;
   width: 15px;
 }
@@ -81,19 +81,19 @@ body {
   justify-content: flex-end;
 }
 
-.Board .player-card-last .crown-container img {
-  top: 30px;
-}
-
-.Board .player-card-last .name-hearts-container {
+.Board .player-card-last .crown-container-myplayer img {
   top: 25px;
 }
 
-.Board .player-card-last .name-hearts-container h4 {
+.Board .player-card-last .name-hearts-container-myplayer {
+  top: 25px;
+}
+
+.Board .player-card-last .name-hearts-container-myplayer h4 {
   margin-top: 0;
 }
 
-.Board .player-card-last .hearts-container {
+.Board .player-card-last .hearts-container-myplayer {
   margin-top: 3px;
 }
 

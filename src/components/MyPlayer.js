@@ -20,15 +20,15 @@ const MyPlayer = (props) => {
             <div className="mydiscard">
                 <Discard mydiscard={props.mydiscard} />
             </div>
-            <div className="name-hearts-container">
-                <div className="hearts-container">
+            <div className="name-hearts-container-myplayer">
+                <div className="hearts-container-myplayer">
                     {stars}
                 </div>
                 <h4>{props.name}</h4>
                 <div className="time-icon">
                     <img src={timeIcon} />
                 </div>
-                <div className="crown-container">
+                <div className="crown-container-myplayer">
                     <img src={orangeCrown} />
                 </div>
             </div>

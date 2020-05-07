@@ -16,12 +16,12 @@ const Player = (props) => {
 
     return (
             <div className="player-card">
-                <div className="crown-container">
+                <div className="crown-container-player">
                     <img src={orangeCrown}/>
                 </div>
-                <div className="name-hearts-container">
+                <div className="name-hearts-container-player">
                     <h4>{props.name}</h4>
-                    <div className="hearts-container">
+                    <div className="hearts-container-player">
                         {stars}
                     </div> 
                 </div>

@@ -9,7 +9,7 @@ body {
   height: 35vh;
 }
 
-.crown-container {
+.crown-container-player {
   width: 100%;
   height: 5px;
   display: flex;
@@ -17,15 +17,15 @@ body {
   align-items: center;
 }
 
-.crown-container img {
+.crown-container-player img {
   position: relative;
-  width: 70px;
+  width: 60px;
   height: 70px;
-  top: -52px;
+  top: -48px;
   z-index: 5;
 }
 
-.name-hearts-container {
+.name-hearts-container-player {
   position: relative;
   width: 70%;
   height: 50px;
@@ -38,22 +38,22 @@ body {
   background-color: #342642;
 }
 
-.name-hearts-container h4 {
+.name-hearts-container-player h4 {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
-  font-family: sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: normal;
   margin-top: 3px;
 }
 
-.hearts-container {
+.hearts-container-player {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hearts-container img {
+.hearts-container-player img {
   margin: 0 3px;
   width: 15px;
 }

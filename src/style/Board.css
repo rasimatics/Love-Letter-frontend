@@ -26,6 +26,19 @@
   transition: 5s ease-in-out;
 }
 
+.game-id {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: #f2f2f2;
+  opacity: 0.75;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 33px;
+}
+
 @keyframes myFirstCard {
   0% {
     opacity: 0;
@@ -39,7 +52,7 @@
     bottom: 13px;
     transform: rotate(352deg);
   }
-  100%{
+  100% {
     opacity: 0;
     right: 32%;
     bottom: 13px;
@@ -69,7 +82,7 @@
     bottom: 13px;
     transform: rotate(365deg);
   }
-  100%{
+  100% {
     opacity: 0;
     right: 15%;
     bottom: 13px;
@@ -109,7 +122,7 @@
     transform: rotate(300deg);
   }
 
-  100%{
+  100% {
     opacity: 0;
     width: 1%;
     right: 72%;
@@ -134,7 +147,7 @@
     transform: rotate(300deg);
   }
 
-  100%{
+  100% {
     opacity: 0;
     width: 1%;
     right: 50%;
@@ -142,7 +155,6 @@
     transform: rotate(380deg);
   }
 }
-
 
 @keyframes playerThree {
   0% {
@@ -160,7 +172,7 @@
     transform: rotate(300deg);
   }
 
-  100%{
+  100% {
     opacity: 0;
     width: 1%;
     right: 25%;
@@ -168,4 +180,3 @@
     transform: rotate(380deg);
   }
 }
-
