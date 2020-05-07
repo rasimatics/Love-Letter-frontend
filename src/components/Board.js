@@ -19,17 +19,17 @@ import { socket } from '../helpers/socket'
 
 
 const Board = () => {
-    const [handCard, setHandCard] = useState(card7)
+    const [handCard, setHandCard] = useState()
     const [newCard, setNewCard] = useState()
     const [mystars, setMystars] = useState(0)
-    const [mydiscard, setMyDiscard] = useState([card4, card5, card6])
+    const [mydiscard, setMyDiscard] = useState([])
     const [players, setPlayers] = useState([])
 
     let n_players = -1
 
 
     socket.on("err", data => alert(data.msg))
-  
+
     useEffect(() => {
         setInterval(() => {
             const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
@@ -39,29 +39,38 @@ const Board = () => {
                     setPlayers(data.players)
 
                     let id = parseInt(localStorage.getItem("id"))
-                    setHandCard(whichCard(data.players.find(player => player.id == id).on_hand_card_id))
-                    
-                    n_players = data.n_players
+                    setHandCard(whichCard(data.players.find(player => player.id === id).on_hand_card_id))
+                    setNewCard(whichCard(data.players.find(player => player.id === id).taken_card_id))
 
+                    n_players = data.n_players
                     //split cards 
-                    if(n_players === data.players.length && localStorage.getItem("splitted")==="false")
-                    {
-                        localStorage.setItem("splitted","true")
-                        startGame()    
+                    if (n_players === data.players.length && localStorage.getItem("splitted") === "false") {
+                        localStorage.setItem("splitted", "true")
+                        startGame()
+                        setTimeout(() => {
+                            if (data.whose_turn_player_id === id) {
+                                newCardtoMe()
+                            } else {
+                                switch (n_players) {
+                                    case 2: playerTwoCard()
+                                    case 3: playerOneCard()
+                                    case 4: playerOneCard()
+                                }
+                            }
+                        },3500) 
                     }
                     //if spiltted
-                    else if(n_players === data.players.length && localStorage.getItem("splitted") === "true")
-                    {   
+                    else if (n_players === data.players.length && localStorage.getItem("splitted") === "true") {
                         document.getElementsByClassName("inHand")[0].style.opacity = 1
                     }
                 })
         }, 1000)
 
-        
-    },[])
+
+    }, [])
 
     const whichCard = (id) => {
-        switch(id){
+        switch (id) {
             case 1: return card1
             case 2: return card2
             case 3: return card3
@@ -72,7 +81,7 @@ const Board = () => {
             case 8: return card8
         }
     }
- 
+
     const playerOneCard = () => {
         document.getElementsByClassName("one")[0].style.animationName = "playerOne"
         setTimeout(() => document.getElementsByClassName("one")[0].style.animationName = "", 3000)
@@ -90,17 +99,11 @@ const Board = () => {
 
     const myFirstCard = () => {
         document.getElementsByClassName("myCard")[0].style.animationName = "myFirstCard"
-        setTimeout(() => {
-            document.getElementsByClassName("inHand")[0].style.opacity = "1"
-        }, 400)
     }
 
     const newCardtoMe = () => {
         document.getElementsByClassName("myCard")[0].style.animationName = "myCard"
-        setTimeout(() => {
-            document.getElementsByClassName("newCard")[0].style.opacity = "1"
-        }, 400)
-
+        document.getElementsByClassName("newCard")[0].style.opacity = 1
     }
 
 
