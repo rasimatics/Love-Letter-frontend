@@ -16,6 +16,8 @@ import bcard from '../images/love_cards/cards_loveletter-09.svg'
 
 import { socket } from '../helpers/socket'
 
+
+
 const Board = () => {
     const [handCard, setHandCard] = useState(card7)
     const [newCard, setNewCard] = useState()
@@ -23,10 +25,8 @@ const Board = () => {
     const [mydiscard, setMyDiscard] = useState([card4, card5, card6])
     const [players, setPlayers] = useState([])
 
-
-    //let n_players = parseInt(localStorage.getItem("n_players"))
     let n_players = -1
-    let deck = null
+
 
     socket.on("err", data => alert(data.msg))
   
@@ -37,15 +37,42 @@ const Board = () => {
                 .then(data => {
                     console.log("api", data)
                     setPlayers(data.players)
+
+                    let id = parseInt(localStorage.getItem("id"))
+                    setHandCard(whichCard(data.players.find(player => player.id == id).on_hand_card_id))
+                    
                     n_players = data.n_players
-                    deck = data.deck
 
+                    //split cards 
+                    if(n_players === data.players.length && localStorage.getItem("splitted")==="false")
+                    {
+                        localStorage.setItem("splitted","true")
+                        startGame()    
+                    }
+                    //if spiltted
+                    else if(n_players === data.players.length && localStorage.getItem("splitted") === "true")
+                    {   
+                        document.getElementsByClassName("inHand")[0].style.opacity = 1
+                    }
                 })
-        }, 2000)
-        if(deck !==null)
-            startGame()
-    }, [])
+        }, 1000)
 
+        
+    },[])
+
+    const whichCard = (id) => {
+        switch(id){
+            case 1: return card1
+            case 2: return card2
+            case 3: return card3
+            case 4: return card4
+            case 5: return card5
+            case 6: return card6
+            case 7: return card7
+            case 8: return card8
+        }
+    }
+ 
     const playerOneCard = () => {
         document.getElementsByClassName("one")[0].style.animationName = "playerOne"
         setTimeout(() => document.getElementsByClassName("one")[0].style.animationName = "", 3000)
@@ -78,23 +105,19 @@ const Board = () => {
 
 
     const startGame = () => {
-        setNewCard(card8)
         if (n_players === 4) {
             setTimeout(() => myFirstCard(), 1000)
             setTimeout(() => playerOneCard(), 2000)
             setTimeout(() => playerTwoCard(), 3000)
             setTimeout(() => playerThreeCard(), 4000)
-            setTimeout(() => newCardtoMe(), 5000)
         }
         else if (n_players === 3) {
             setTimeout(() => myFirstCard(), 1000)
             setTimeout(() => playerOneCard(), 2000)
             setTimeout(() => playerThreeCard(), 3000)
-            setTimeout(() => newCardtoMe(), 4000)
         } else {
             setTimeout(() => myFirstCard(), 1000)
             setTimeout(() => playerTwoCard(), 2000)
-            setTimeout(() => newCardtoMe(), 3000)
         }
     }
 

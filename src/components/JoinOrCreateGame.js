@@ -9,6 +9,9 @@ import '../style/Shared.css'
 
 
 const JoinOrCreateGame = () => {
+
+    localStorage.setItem("splitted","false")
+    
     return (
         <div className="game-page">
             <div className="choose">Join or Create a game</div>
