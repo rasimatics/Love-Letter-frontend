@@ -24,6 +24,9 @@ const Board = () => {
     const [mystars, setMystars] = useState(0)
     const [mydiscard, setMyDiscard] = useState([])
     const [players, setPlayers] = useState([])
+    const [selected_card, setSelected_card] = useState()
+    const [turn, setTurn] = useState()
+    const [cardClass, setCardClass] = useState("")
 
     let n_players = -1
 
@@ -35,14 +38,16 @@ const Board = () => {
             const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
             fetch(URL).then(response => response.json())
                 .then(data => {
-                    console.log("api", data)
+                    //console.log("api", data)
                     setPlayers(data.players)
 
                     let id = parseInt(localStorage.getItem("id"))
+
                     setHandCard(whichCard(data.players.find(player => player.id === id).on_hand_card_id))
                     setNewCard(whichCard(data.players.find(player => player.id === id).taken_card_id))
 
                     n_players = data.n_players
+                    setTurn(data.whose_turn_player_id)
                     //split cards 
                     if (n_players === data.players.length && localStorage.getItem("splitted") === "false") {
                         localStorage.setItem("splitted", "true")
@@ -57,11 +62,12 @@ const Board = () => {
                                     case 4: playerOneCard()
                                 }
                             }
-                        },3500) 
+                        }, 3500)
                     }
-                    //if spiltted
+                    //if spiltted show my cards
                     else if (n_players === data.players.length && localStorage.getItem("splitted") === "true") {
                         document.getElementsByClassName("inHand")[0].style.opacity = 1
+                        document.getElementsByClassName("newCard")[0].style.opacity = 1
                     }
                 })
         }, 1000)
@@ -125,6 +131,29 @@ const Board = () => {
     }
 
 
+
+    const selectCard = (e) => {
+        if (newCard === undefined) {
+            alert("Not your turn")
+        } else {
+            setSelected_card(e.target.src.match(/^\d+|\d+\b|\d+(?=\w)/g)[1])
+            setCardClass(e.target.className)
+        }
+
+    }
+
+    const playToPlayer = (id) => {
+        if (selected_card) {
+            alert(turn + " " + parseInt(selected_card[1]) + " " + id)
+            setSelected_card()
+            setCardClass("")
+        }
+        else {
+            alert("Choose card")
+        }
+    }
+
+
     return (
         <div>
             <div className="Board">
@@ -132,13 +161,13 @@ const Board = () => {
                 <img className="player two" src={bcard} alt="" />
                 <img className="player three" src={bcard} alt="" />
 
-                {players.map(player => player.id != localStorage.getItem("id") && <Player key={player.id} name={player.nickname} mydiscard={[]} />)}
+                {players.map(player => player.id != localStorage.getItem("id") && <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={player.discarded_cards} stars={0} />)}
 
                 <MyPlayer name={localStorage.getItem("nickname")} stars={mystars} mydiscard={[]} />
 
                 <div className="right-corner-images">
-                    <img className="inHand" src={handCard} alt="" />
-                    <img className="newCard" src={newCard} alt="" />
+                    <img className="inHand" src={handCard} onClick={selectCard} alt="" />
+                    <img className="newCard" src={newCard} onClick={selectCard} alt="" />
                 </div>
 
                 <img className="myCard" src={bcard} />

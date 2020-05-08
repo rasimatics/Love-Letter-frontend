@@ -49,6 +49,7 @@
 
 .myCard {
   position: absolute;
+  z-index: -1;
   opacity: 0;
   width: 15%;
   animation-duration: 1.5s;
