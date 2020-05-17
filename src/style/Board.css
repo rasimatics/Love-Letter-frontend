@@ -170,3 +170,34 @@
   }
 }
 
+.casePriest{
+  position: absolute;
+  width: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%,-30%);
+  opacity: 0;
+  transition: 2s ease-in-out;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  z-index: 1;
+}
+
+@keyframes showCard {
+  0% {
+    opacity: 0;
+    width: 10px;
+
+  }
+  50% {
+    opacity: 0,5;
+    width: 200px;
+  }
+
+  100%{
+    opacity: 1;
+    width: 260px;
+  }
+}

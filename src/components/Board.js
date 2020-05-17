@@ -27,6 +27,7 @@ const Board = () => {
     const [selected_card, setSelected_card] = useState()
     const [turn, setTurn] = useState()
     const [cardClass, setCardClass] = useState("")
+    const [showCard, setShowCard] = useState() 
 
     let n_players = -1
 
@@ -153,6 +154,13 @@ const Board = () => {
         }
     }
 
+    const priestShowCard = (whom, card) => {
+        if (whom === parseInt(localStorage.getItem("id"))) {
+            setShowCard(whichCard(card))
+            document.getElementsByClassName("casePriest")[0].style.animationName = "showCard"
+        }
+    }
+
 
     return (
         <div>
@@ -170,9 +178,11 @@ const Board = () => {
                     <img className="newCard" src={newCard} onClick={selectCard} alt="" />
                 </div>
 
+                <img className="casePriest" src={showCard} />
+
                 <img className="myCard" src={bcard} />
 
-                <div onClick={startGame} className="right-koloda">
+                <div className="right-koloda">
                     <img src={koloda} alt="" />
                 </div>
             </div>
