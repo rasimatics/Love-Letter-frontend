@@ -3,13 +3,14 @@ body {
 }
 
 .myplayer-card {
-  background-color: #4f3162;
-  border-radius: 30px;
-  position: absolute;
+  background-color: #4f3b62;
+  border-radius: 20px;
+  position: fixed;
   bottom: 13%;
   left: 10.5%;
   width: 25%;
   height: 35vh;
+  padding: 15px;
 }
 
 .time-icon {
@@ -23,7 +24,8 @@ body {
   width: 50px;
   height: 50px;
   position: relative;
-  top: -10px;
+  left: -10px;
+  top: -5px;
 }
 
 .crown-container-myplayer {
@@ -45,7 +47,7 @@ body {
 .name-hearts-container-myplayer {
   background-color: #342642;
   width: 70%;
-  border-radius: 20px;
+  border-radius: 13px;
   margin: 0 auto;
   height: 50px;
   position: relative;
@@ -82,11 +84,11 @@ body {
 }
 
 .Board .player-card-last .crown-container-myplayer img {
-  top: 25px;
+  top: 23px;
 }
 
 .Board .player-card-last .name-hearts-container-myplayer {
-  top: 25px;
+  top: 40px;
 }
 
 .Board .player-card-last .name-hearts-container-myplayer h4 {
@@ -119,7 +121,7 @@ body {
   transform: rotateZ(5deg);
 }
 
-.mydiscard{
+.mydiscard {
   position: relative;
   top: 10%;
 }

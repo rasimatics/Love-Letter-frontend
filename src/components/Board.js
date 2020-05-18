@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
 import socketIOClient from "socket.io-client";
 import Player from "./Player";
 import MyPlayer from "./MyPlayer";
@@ -13,16 +14,19 @@ import card6 from "../images/love_cards/cards_loveletter-06.svg";
 import card7 from "../images/love_cards/cards_loveletter-07.svg";
 import card8 from "../images/love_cards/cards_loveletter-08.svg";
 import bcard from "../images/love_cards/cards_loveletter-09.svg";
+import deck from "../images/deck.svg";
 import Discard from "./Discard";
 
 const ENDPOINT = "http://104.248.20.1:8080";
+
+Modal.setAppElement("#root");
 
 const Board = () => {
   const [handCard, setHandCard] = useState(card7);
   const [newCard, setNewCard] = useState();
   const [mystars, setMystars] = useState(0);
-
   const [mydiscard, setMyDiscard] = useState([card4, card5, card6]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   let n_players = parseInt(localStorage.getItem("n_players"));
 
@@ -122,6 +126,37 @@ const Board = () => {
 
         <div onClick={startGame} className='right-koloda'>
           <img src={koloda} alt='' />
+        </div>
+
+        <div className='modal-container'>
+          <button className='modal-btn' onClick={() => setModalIsOpen(true)}>
+            <img src={deck} />
+          </button>
+
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={() => setModalIsOpen(false)}
+            className='Modal'
+            overlayClassName='Overlay'
+          >
+            <div className='modal-text-top'>
+              <h3>Select "Jake the Dog" <br/> Guard Target</h3>
+            </div>
+
+            <div className='modal-cards'>
+              <img src={card2} />
+              <img src={card3} />
+              <img src={card4} />
+              <img src={card5} />
+              <img src={card6} />
+              <img src={card7} />
+              <img src={card8} />
+            </div>
+
+            <div className='modal-text-bottom'>
+              <h2>Use the characters in <br/> the cartoon</h2>
+            </div>
+          </Modal>
         </div>
       </div>
     </div>

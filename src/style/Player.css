@@ -3,9 +3,10 @@ body {
 }
 
 .player-card {
-  background-color: #4f3162;
-  border-radius: 30px;
+  background-color: #4f3b62;
+  border-radius: 20px;
   width: 30%;
+  padding: 15px;
   height: 35vh;
 }
 
@@ -21,7 +22,7 @@ body {
   position: relative;
   width: 60px;
   height: 70px;
-  top: -48px;
+  top: -65px;
   z-index: 5;
 }
 
@@ -29,8 +30,8 @@ body {
   position: relative;
   width: 70%;
   height: 50px;
-  top: -25px;
-  border-radius: 20px;
+  top: -45px;
+  border-radius: 13px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
