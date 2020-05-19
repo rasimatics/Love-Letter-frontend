@@ -27,14 +27,19 @@ const Board = () => {
     const [selected_card, setSelected_card] = useState()
     const [turn, setTurn] = useState()
     const [cardClass, setCardClass] = useState("")
-    const [showCard, setShowCard] = useState() 
+    const [showCard, setShowCard] = useState()
 
     let n_players = -1
 
 
-    socket.on("err", data => alert(data.msg))
+    
 
     useEffect(() => {
+        socket.on("card-played", data => console.log(data))
+        socket.on("play-card", data => console.log(data))
+        socket.on("err",data=>console.log(data.msg))
+        socket.on("game-started",data=>console.log(data))
+
         setInterval(() => {
             const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
             fetch(URL).then(response => response.json())
@@ -143,8 +148,26 @@ const Board = () => {
 
     }
 
+
     const playToPlayer = (id) => {
         if (selected_card) {
+            socket.emit('play-card',
+                {
+                    player: {
+                        id: turn
+                    },
+                    card: {
+                        id: parseInt(selected_card[1])
+                    },
+                    target: {
+                        player: {
+                            id: id
+                        },
+                        card: {
+                            id: ""
+                        }
+                    }
+                })
             alert(turn + " " + parseInt(selected_card[1]) + " " + id)
             setSelected_card()
             setCardClass("")
@@ -169,7 +192,7 @@ const Board = () => {
                 <img className="player two" src={bcard} alt="" />
                 <img className="player three" src={bcard} alt="" />
 
-                {players.map(player => player.id != localStorage.getItem("id") && <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={player.discarded_cards} stars={0} />)}
+                {players.map(player => player.id != localStorage.getItem("id") && <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={0} />)}
 
                 <MyPlayer name={localStorage.getItem("nickname")} stars={mystars} mydiscard={[]} />
 
