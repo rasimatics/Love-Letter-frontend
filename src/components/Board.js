@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import ModalImage from "react-modal";
 import socketIOClient from "socket.io-client";
 import Player from "./Player";
 import MyPlayer from "./MyPlayer";
@@ -15,6 +16,8 @@ import card7 from "../images/love_cards/cards_loveletter-07.svg";
 import card8 from "../images/love_cards/cards_loveletter-08.svg";
 import bcard from "../images/love_cards/cards_loveletter-09.svg";
 import deck from "../images/deck.svg";
+import info from "../images/onboard_assets/info.svg";
+import exitCard from "../images/vector_cancel.svg";
 import Discard from "./Discard";
 
 const ENDPOINT = "http://104.248.20.1:8080";
@@ -26,7 +29,12 @@ const Board = () => {
   const [newCard, setNewCard] = useState();
   const [mystars, setMystars] = useState(0);
   const [mydiscard, setMyDiscard] = useState([card4, card5, card6]);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalGuardIsOpen, setmodalGuardInfoIsOpen] = useState(false);
+  const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
+  const [modalInfoStyle, setmodalInfoStyle] = useState();
+  const [modalCardIsOpen, setmodalCardIsOpen] = useState(false);
+  const [modalCardStyle, setmodalCardStyle] = useState();
+  const [imageSrc, setImageSrc] = useState();
 
   let n_players = parseInt(localStorage.getItem("n_players"));
 
@@ -128,14 +136,16 @@ const Board = () => {
           <img src={koloda} alt='' />
         </div>
 
-        <div className='modal-container'>
-          <button className='modal-btn' onClick={() => setModalIsOpen(true)}>
+        {/* GUARD FEATURE */}
+
+        {/* <div className='modal-container'>
+          <button className='modal-btn' onClick={() => setmodalGuardIsOpen(true)}>
             <img src={deck} />
           </button>
 
           <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={() => setModalIsOpen(false)}
+            isOpen={modalInfoIsOpen}
+            onRequestClose={() => setmodalGuardIsOpen(false)}
             className='Modal'
             overlayClassName='Overlay'
           >
@@ -157,6 +167,151 @@ const Board = () => {
               <h2>Use the characters in <br/> the cartoon</h2>
             </div>
           </Modal>
+        </div> */}
+
+        {/* INFO BUTTON */}
+
+        <div className='modal-container'>
+          <button
+            className='modal-btn'
+            onClick={() => {
+              setmodalInfoIsOpen(true);
+              setmodalInfoStyle("Modal");
+            }}
+          >
+            <img src={info} />
+          </button>
+
+          <Modal
+            isOpen={modalInfoIsOpen}
+            onRequestClose={() => {
+              setmodalInfoStyle("Modal-close");
+              setTimeout(() => {
+                setmodalInfoIsOpen(false);
+              }, 601);
+            }}
+            className={modalInfoStyle}
+            overlayClassName='Overlay'
+          >
+            <button className='btn-close-card'>
+              <img
+                src={exitCard}
+                onClick={() => {
+                  setmodalInfoStyle("Modal-close");
+                  setTimeout(() => {
+                    setmodalInfoIsOpen(false);
+                  }, 601);
+                }}
+              />
+            </button>
+
+            <div className='modal-text-top'>
+              <h3>
+                Select a card <br /> for information
+              </h3>
+            </div>
+
+            <div className='modal-cards'>
+              <img
+                src={card1}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card1);
+                }}
+              />
+              <img
+                src={card2}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card2);
+                }}
+              />
+              <img
+                src={card3}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card3);
+                }}
+              />
+              <img
+                src={card4}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card4);
+                }}
+              />
+              <img
+                src={card5}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card5);
+                }}
+              />
+              <img
+                src={card6}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card6);
+                }}
+              />
+              <img
+                src={card7}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card7);
+                }}
+              />
+              <img
+                src={card8}
+                onClick={() => {
+                  setmodalCardIsOpen(true);
+                  setmodalCardStyle("ModalImage");
+                  setImageSrc(card8);
+                }}
+              />
+            </div>
+
+            <div className='modal-text-bottom'>
+              <h2>
+                Choose any <br /> for more
+              </h2>
+            </div>
+          </Modal>
+
+          <div className='modal-single-card'>
+            <ModalImage
+              isOpen={modalCardIsOpen}
+              onRequestClose={() => {
+                setmodalCardStyle("ModalImage-close");
+                setTimeout(() => {
+                  setmodalCardIsOpen(false);
+                }, 601);
+              }}
+              className={modalCardStyle}
+              overlayClassName='Overlay'
+            >
+              <button className='btn-close-card'>
+                <img
+                  src={exitCard}
+                  onClick={() => {
+                    setmodalCardStyle("ModalImage-close");
+                    setTimeout(() => {
+                      setmodalCardIsOpen(false);
+                    }, 601);
+                  }}
+                />
+              </button>
+
+              <img src={imageSrc} />
+            </ModalImage>
+          </div>
         </div>
       </div>
     </div>
