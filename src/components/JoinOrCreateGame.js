@@ -13,12 +13,12 @@ const JoinOrCreateGame = () => {
       <div className='choose'>Join or Create a game</div>
       <Link to={{ pathname: "/gamemode" }}>
         <button className='btn-return'>
-          <img src={back} />
+          <img src={back} alt='' />
         </button>
       </Link>
       <Link to={{ pathname: "/" }}>
         <button className='btn-close'>
-          <img src={cancel} />
+          <img src={cancel} alt='' />
         </button>
       </Link>
       <div className='mode'>

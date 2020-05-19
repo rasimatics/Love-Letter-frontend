@@ -28,12 +28,12 @@ const Play = () => {
       <div className='choose'>Choose a Nickname</div>
       <Link to={{ pathname: "/" }}>
         <button className='btn-return'>
-          <img src={back} />
+          <img src={back} alt='' />
         </button>
       </Link>
       <Link to={{ pathname: "/" }}>
         <button className='btn-close'>
-          <img src={cancel} />
+          <img src={cancel} alt='' />
         </button>
       </Link>
       <img className='robot' src={robot} alt='Not Found' />

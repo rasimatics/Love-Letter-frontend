@@ -10,10 +10,10 @@ const MyPlayer = (props) => {
 
     let stars = []
     for (let i = 0; i < props.stars; i++)
-        stars.push(<img src={heartPink} />)
+        stars.push(<img src={heartPink} alt='' />)
 
     for (let i = 0; i < 10 - props.stars; i++)
-        stars.push(<img src={heartWhite} />)
+        stars.push(<img src={heartWhite} alt='' />)
 
     return (
         <div className="myplayer-card player-card-last">
@@ -26,10 +26,10 @@ const MyPlayer = (props) => {
                 </div>
                 <h4>{props.name}</h4>
                 <div className="time-icon">
-                    <img src={timeIcon} />
+                    <img src={timeIcon} alt='' />
                 </div>
                 <div className="crown-container-myplayer">
-                    <img src={orangeCrown} />
+                    <img src={orangeCrown} alt='' />
                 </div>
             </div>
         </div>

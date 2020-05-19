@@ -39,12 +39,12 @@ const CreateGame = () => {
       <div className='choose'>Create a game</div>
       <Link to={{ pathname: "/join-or-create" }}>
         <button className='btn-return'>
-          <img src={back} />
+          <img src={back} alt='' />
         </button>
       </Link>
       <Link to={{ pathname: "/" }}>
         <button className='btn-close'>
-          <img src={cancel} />
+          <img src={cancel} alt='' />
         </button>
       </Link>
       <img className='lumpy' src={lumpy} alt='Not Found' />

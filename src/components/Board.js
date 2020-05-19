@@ -130,7 +130,7 @@ const Board = () => {
           <img className='newCard' src={newCard} alt='' />
         </div>
 
-        <img className='myCard' src={bcard} />
+        <img className='myCard' src={bcard} alt='' />
 
         <div onClick={startGame} className='right-koloda'>
           <img src={koloda} alt='' />
@@ -140,7 +140,7 @@ const Board = () => {
 
         {/* <div className='modal-container'>
           <button className='modal-btn' onClick={() => setmodalGuardIsOpen(true)}>
-            <img src={deck} />
+            <img src={deck} alt='' />
           </button>
 
           <Modal
@@ -154,13 +154,13 @@ const Board = () => {
             </div>
 
             <div className='modal-cards'>
-              <img src={card2} />
-              <img src={card3} />
-              <img src={card4} />
-              <img src={card5} />
-              <img src={card6} />
-              <img src={card7} />
-              <img src={card8} />
+              <img src={card2} alt='' />
+              <img src={card3} alt='' />
+              <img src={card4} alt='' />
+              <img src={card5} alt='' />
+              <img src={card6} alt='' />
+              <img src={card7} alt='' />
+              <img src={card8} alt='' />
             </div>
 
             <div className='modal-text-bottom'>
@@ -179,7 +179,7 @@ const Board = () => {
               setmodalInfoStyle("Modal");
             }}
           >
-            <img src={info} />
+            <img src={info} alt='' />
           </button>
 
           <Modal
@@ -196,6 +196,7 @@ const Board = () => {
             <button className='btn-close-card'>
               <img
                 src={exitCard}
+                alt=''
                 onClick={() => {
                   setmodalInfoStyle("Modal-close");
                   setTimeout(() => {
@@ -214,6 +215,7 @@ const Board = () => {
             <div className='modal-cards'>
               <img
                 src={card1}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -222,6 +224,7 @@ const Board = () => {
               />
               <img
                 src={card2}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -230,6 +233,7 @@ const Board = () => {
               />
               <img
                 src={card3}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -238,6 +242,7 @@ const Board = () => {
               />
               <img
                 src={card4}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -246,6 +251,7 @@ const Board = () => {
               />
               <img
                 src={card5}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -254,6 +260,7 @@ const Board = () => {
               />
               <img
                 src={card6}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -262,6 +269,7 @@ const Board = () => {
               />
               <img
                 src={card7}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -270,6 +278,7 @@ const Board = () => {
               />
               <img
                 src={card8}
+                alt=''
                 onClick={() => {
                   setmodalCardIsOpen(true);
                   setmodalCardStyle("ModalImage");
@@ -300,6 +309,7 @@ const Board = () => {
               <button className='btn-close-card'>
                 <img
                   src={exitCard}
+                  alt=''
                   onClick={() => {
                     setmodalCardStyle("ModalImage-close");
                     setTimeout(() => {
@@ -309,7 +319,7 @@ const Board = () => {
                 />
               </button>
 
-              <img src={imageSrc} />
+              <img src={imageSrc} alt='' />
             </ModalImage>
           </div>
         </div>

@@ -120,3 +120,59 @@ body {
 .bottom-img {
   text-align: center;
 }
+
+.btnFullScreen {
+  width: 70px;
+  height: 70px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  margin-left: 15px;
+  text-align: center;
+  outline: none;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  bottom: 3%;
+  right: 4%;
+}
+
+.btnFullScreen img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
+
+.btnFullScreen:hover {
+  background-color: #b3355f;
+}
+
+.btnFullScreenE {
+  width: 70px;
+  height: 70px;
+  border-radius: 60px;
+  border: solid 5px #b3355f;
+  background-color: #d95988;
+  margin-left: 15px;
+  text-align: center;
+  outline: none;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  bottom: 3%;
+  right: 10%;
+}
+
+.btnFullScreenE img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
+
+.btnFullScreenE:hover {
+  background-color: #b3355f;
+}

@@ -13,12 +13,12 @@ const Gamemode = () => {
       <div className='choose'>Choose game mode</div>
       <Link to={{ pathname: "/play" }}>
         <button className='btn-return'>
-          <img src={back} />
+          <img src={back} alt='' />
         </button>
       </Link>
       <Link to={{ pathname: "/" }}>
         <button className='btn-close'>
-          <img src={cancel} />
+          <img src={cancel} alt='' />
         </button>
       </Link>
       <img className='guy-vector' src={guy_vector} alt='Not Found' />
