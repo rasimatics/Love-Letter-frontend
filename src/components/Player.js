@@ -6,26 +6,24 @@ import heartWhite from "../images/onboard_assets/white_heart.svg";
 import "../style/Player.css";
 
 const Player = (props) => {
+
   let stars = [];
+
   for (let i = 0; i < props.stars; i++) {
     stars.push(<img src={heartPink} alt='' />);
   }
-
-  let stars = []
-  for (let i = 0; i < props.stars; i++)
-      stars.push(<img key={i} src={heartPink} />)
 
   for (let i = 0; i < 7 - props.stars; i++)
       stars.push(<img key={i} src={heartWhite} />)
 
   return (
       <div className="player-card" onClick={(id)=>props.onClick(props.id)}>
-          <div className="crown-container">
+          <div className="crown-container-player">
               <img src={orangeCrown} />
           </div>
-          <div className="name-hearts-container">
+          <div className="name-hearts-container-player">
               <h4>{props.name}</h4>
-              <div className="hearts-container">
+              <div className="hearts-container-player">
                   {stars}
               </div>
           </div>

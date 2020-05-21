@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import Modal from "react-modal";
-import ModalImage from "react-modal";
-import socketIOClient from "socket.io-client";
+import React, { useState, useEffect } from "react";
 import Player from "./Player";
 import MyPlayer from "./MyPlayer";
 import koloda from "../images/onboard_assets/Koloda.svg";
@@ -15,101 +12,177 @@ import card6 from "../images/love_cards/cards_loveletter-06.svg";
 import card7 from "../images/love_cards/cards_loveletter-07.svg";
 import card8 from "../images/love_cards/cards_loveletter-08.svg";
 import bcard from "../images/love_cards/cards_loveletter-09.svg";
-import deck from "../images/deck.svg";
-import info from "../images/onboard_assets/info.svg";
-import exitCard from "../images/vector_cancel.svg";
-import Discard from "./Discard";
+import Modal from "react-modal";
+import { socket } from '../helpers/socket'
+import CardsInfor from "./CardsInfor";
 
 
 Modal.setAppElement("#root");
 
 const Board = () => {
-  const [handCard, setHandCard] = useState(card7);
+  const [handCard, setHandCard] = useState();
   const [newCard, setNewCard] = useState();
   const [mystars, setMystars] = useState(0);
-  const [mydiscard, setMyDiscard] = useState([card4, card5, card6]);
-  const [modalGuardIsOpen, setmodalGuardInfoIsOpen] = useState(false);
-  const [modalInfoIsOpen, setmodalInfoIsOpen] = useState(false);
-  const [modalInfoStyle, setmodalInfoStyle] = useState();
-  const [modalCardIsOpen, setmodalCardIsOpen] = useState(false);
-  const [modalCardStyle, setmodalCardStyle] = useState();
-  const [imageSrc, setImageSrc] = useState();
+  const [players, setPlayers] = useState([])
+  const [selected_card, setSelected_card] = useState()
+  const [turn, setTurn] = useState()
+  const [cardClass, setCardClass] = useState("")
+  const [showCard, setShowCard] = useState()
+  const [mydiscard, setMyDiscard] = useState();
 
   let n_players = parseInt(localStorage.getItem("n_players"));
 
-  let players = [];
+  useEffect(() => {
+    socket.on("card-played", data => console.log(data))
+    socket.on("play-card", data => console.log(data))
+    socket.on("err", data => console.log(data.msg))
+    socket.on("info", data => console.log(data))
+    socket.on("player-discarded", data => console.log(data))
+    socket.on("player-eliminated", data => console.log(data))
 
-  for (let i = 0; i < n_players - 1; i++) {
-    players.push(
-      <Player name={"Anar"} stars={mystars} mydiscard={mydiscard} />
-    );
+    setInterval(() => {
+      const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
+      fetch(URL).then(response => response.json())
+        .then(data => {
+          setPlayers(data.players)
+
+          let id = parseInt(localStorage.getItem("id"))
+
+          setHandCard(whichCard(data.players.find(player => player.id === id).on_hand_card_id))
+          setNewCard(whichCard(data.players.find(player => player.id === id).taken_card_id))
+
+          n_players = data.n_players
+          setTurn(data.whose_turn_player_id)
+          //split cards 
+          if (n_players === data.players.length && localStorage.getItem("splitted") === "false") {
+            localStorage.setItem("splitted", "true")
+            startGame()
+            setTimeout(() => {
+              if (data.whose_turn_player_id === id) {
+                newCardtoMe()
+              } else {
+                switch (n_players) {
+                  case 2: playerTwoCard()
+                  case 3: playerOneCard()
+                  case 4: playerOneCard()
+                }
+              }
+            }, 3500)
+          }
+          //if spiltted show my cards
+          else if (n_players === data.players.length && localStorage.getItem("splitted") === "true") {
+            document.getElementsByClassName("inHand")[0].style.opacity = 1
+            document.getElementsByClassName("newCard")[0].style.opacity = 1
+          }
+        })
+    }, 1000)
+
+  }, [])
+
+
+  const whichCard = (id) => {
+    switch (id) {
+      case 1: return card1
+      case 2: return card2
+      case 3: return card3
+      case 4: return card4
+      case 5: return card5
+      case 6: return card6
+      case 7: return card7
+      case 8: return card8
+    }
   }
 
   const playerOneCard = () => {
-    document.getElementsByClassName("one")[0].style.animationName = "playerOne";
-    setTimeout(
-      () =>
-        (document.getElementsByClassName("one")[0].style.animationName = ""),
-      3000
-    );
-  };
+    document.getElementsByClassName("one")[0].style.animationName = "playerOne"
+    setTimeout(() => document.getElementsByClassName("one")[0].style.animationName = "", 3000)
+  }
 
   const playerTwoCard = () => {
-    document.getElementsByClassName("two")[0].style.animationName = "playerTwo";
-    setTimeout(
-      () =>
-        (document.getElementsByClassName("two")[0].style.animationName = ""),
-      3000
-    );
-  };
+    document.getElementsByClassName("two")[0].style.animationName = "playerTwo"
+    setTimeout(() => document.getElementsByClassName("two")[0].style.animationName = "", 3000)
+  }
 
   const playerThreeCard = () => {
-    document.getElementsByClassName("three")[0].style.animationName =
-      "playerThree";
-    setTimeout(
-      () =>
-        (document.getElementsByClassName("three")[0].style.animationName = ""),
-      3000
-    );
-  };
+    document.getElementsByClassName("three")[0].style.animationName = "playerThree"
+    setTimeout(() => document.getElementsByClassName("three")[0].style.animationName = "", 3000)
+  }
 
   const myFirstCard = () => {
-    document.getElementsByClassName("myCard")[0].style.animationName =
-      "myFirstCard";
-    setTimeout(() => {
-      document.getElementsByClassName("inHand")[0].style.opacity = "1";
-    }, 400);
-  };
+    document.getElementsByClassName("myCard")[0].style.animationName = "myFirstCard"
+  }
+
 
   const newCardtoMe = () => {
-    document.getElementsByClassName("myCard")[0].style.animationName = "myCard";
-    setTimeout(() => {
-      document.getElementsByClassName("newCard")[0].style.opacity = "1";
-    }, 400);
-  };
+    document.getElementsByClassName("myCard")[0].style.animationName = "myCard"
+    document.getElementsByClassName("newCard")[0].style.opacity = 1
+  }
+
+
 
   const startGame = () => {
-    setNewCard(card8);
     if (n_players === 4) {
-      setTimeout(() => myFirstCard(), 1000);
-      setTimeout(() => playerOneCard(), 2000);
-      setTimeout(() => playerTwoCard(), 3000);
-      setTimeout(() => playerThreeCard(), 4000);
-      setTimeout(() => newCardtoMe(), 5000);
-    } else if (n_players === 3) {
-      setTimeout(() => myFirstCard(), 1000);
-      setTimeout(() => playerOneCard(), 2000);
-      setTimeout(() => playerThreeCard(), 3000);
-      setTimeout(() => newCardtoMe(), 4000);
-    } else {
-      setTimeout(() => myFirstCard(), 1000);
-      setTimeout(() => playerTwoCard(), 2000);
-      setTimeout(() => newCardtoMe(), 3000);
+      setTimeout(() => myFirstCard(), 1000)
+      setTimeout(() => playerOneCard(), 2000)
+      setTimeout(() => playerTwoCard(), 3000)
+      setTimeout(() => playerThreeCard(), 4000)
     }
-  };
+    else if (n_players === 3) {
+      setTimeout(() => myFirstCard(), 1000)
+      setTimeout(() => playerOneCard(), 2000)
+      setTimeout(() => playerThreeCard(), 3000)
+    } else {
+      setTimeout(() => myFirstCard(), 1000)
+      setTimeout(() => playerTwoCard(), 2000)
+    }
+  }
+  const selectCard = (e) => {
+    if (newCard === undefined) {
+      alert("Not your turn")
+    } else {
+      setSelected_card(e.target.src.match(/^\d+|\d+\b|\d+(?=\w)/g)[1])
+      setCardClass(e.target.className)
+    }
 
-  var url = document.URL;
-  var gameId = url.substring(url.lastIndexOf("/") + 1);
+  }
+
+
+  const playToPlayer = (id) => {
+    if (selected_card) {
+      socket.emit('play-card',
+        {
+          player: {
+            id: turn
+          },
+          card: {
+            id: parseInt(selected_card[1])
+          },
+          target: {
+            player: {
+              id: id
+            },
+            card: {
+              id: 4
+            }
+          }
+        })
+      setSelected_card()
+      setCardClass("")
+    }
+    else {
+      alert("Choose card")
+    }
+  }
+
+  const priestShowCard = (whom, card) => {
+    if (whom === parseInt(localStorage.getItem("id"))) {
+      setShowCard(whichCard(card))
+      document.getElementsByClassName("casePriest")[0].style.animationName = "showCard"
+    }
+  }
+
+  let url = document.URL;
+  let gameId = url.substring(url.lastIndexOf("/") + 1);
 
   return (
     <div>
@@ -120,208 +193,24 @@ const Board = () => {
         <img className='player two' src={bcard} alt='' />
         <img className='player three' src={bcard} alt='' />
 
-        {players}
+        {players.map(player => player.id != localStorage.getItem("id") ? <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={0} />
+          :
+          <MyPlayer key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={0} />)}
 
-        <MyPlayer name='Nigar' stars={mystars} mydiscard={mydiscard} />
 
-        <div className='right-corner-images'>
-          <img className='inHand' src={handCard} alt='' />
-          <img className='newCard' src={newCard} alt='' />
+        <div className="right-corner-images">
+          <img className="inHand" src={handCard} onClick={selectCard} alt="" />
+          <img className="newCard" src={newCard} onClick={selectCard} alt="" />
         </div>
+
+        <img className="casePriest" src={showCard} />
 
         <img className='myCard' src={bcard} alt='' />
 
-        <div onClick={startGame} className='right-koloda'>
-          <img src={koloda} alt='' />
+        <div className="right-koloda">
+          <img src={koloda} alt="" />
         </div>
-
-        {/* GUARD FEATURE */}
-
-        {/* <div className='modal-container'>
-          <button className='modal-btn' onClick={() => setmodalGuardIsOpen(true)}>
-            <img src={deck} alt='' />
-          </button>
-
-          <Modal
-            isOpen={modalInfoIsOpen}
-            onRequestClose={() => setmodalGuardIsOpen(false)}
-            className='Modal'
-            overlayClassName='Overlay'
-          >
-            <div className='modal-text-top'>
-              <h3>Select "Jake the Dog" <br/> Guard Target</h3>
-            </div>
-
-            <div className='modal-cards'>
-              <img src={card2} alt='' />
-              <img src={card3} alt='' />
-              <img src={card4} alt='' />
-              <img src={card5} alt='' />
-              <img src={card6} alt='' />
-              <img src={card7} alt='' />
-              <img src={card8} alt='' />
-            </div>
-
-            <div className='modal-text-bottom'>
-              <h2>Use the characters in <br/> the cartoon</h2>
-            </div>
-          </Modal>
-        </div> */}
-
-        {/* INFO BUTTON */}
-
-        <div className='modal-container'>
-          <button
-            className='modal-btn'
-            onClick={() => {
-              setmodalInfoIsOpen(true);
-              setmodalInfoStyle("Modal");
-            }}
-          >
-            <img src={info} alt='' />
-          </button>
-
-          <Modal
-            isOpen={modalInfoIsOpen}
-            onRequestClose={() => {
-              setmodalInfoStyle("Modal-close");
-              setTimeout(() => {
-                setmodalInfoIsOpen(false);
-              }, 601);
-            }}
-            className={modalInfoStyle}
-            overlayClassName='Overlay'
-          >
-            <button className='btn-close-card'>
-              <img
-                src={exitCard}
-                alt=''
-                onClick={() => {
-                  setmodalInfoStyle("Modal-close");
-                  setTimeout(() => {
-                    setmodalInfoIsOpen(false);
-                  }, 601);
-                }}
-              />
-            </button>
-
-            <div className='modal-text-top'>
-              <h3>
-                Select a card <br /> for information
-              </h3>
-            </div>
-
-            <div className='modal-cards'>
-              <img
-                src={card1}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card1);
-                }}
-              />
-              <img
-                src={card2}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card2);
-                }}
-              />
-              <img
-                src={card3}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card3);
-                }}
-              />
-              <img
-                src={card4}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card4);
-                }}
-              />
-              <img
-                src={card5}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card5);
-                }}
-              />
-              <img
-                src={card6}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card6);
-                }}
-              />
-              <img
-                src={card7}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card7);
-                }}
-              />
-              <img
-                src={card8}
-                alt=''
-                onClick={() => {
-                  setmodalCardIsOpen(true);
-                  setmodalCardStyle("ModalImage");
-                  setImageSrc(card8);
-                }}
-              />
-            </div>
-
-            <div className='modal-text-bottom'>
-              <h2>
-                Choose any <br /> for more
-              </h2>
-            </div>
-          </Modal>
-
-          <div className='modal-single-card'>
-            <ModalImage
-              isOpen={modalCardIsOpen}
-              onRequestClose={() => {
-                setmodalCardStyle("ModalImage-close");
-                setTimeout(() => {
-                  setmodalCardIsOpen(false);
-                }, 601);
-              }}
-              className={modalCardStyle}
-              overlayClassName='Overlay'
-            >
-              <button className='btn-close-card'>
-                <img
-                  src={exitCard}
-                  alt=''
-                  onClick={() => {
-                    setmodalCardStyle("ModalImage-close");
-                    setTimeout(() => {
-                      setmodalCardIsOpen(false);
-                    }, 601);
-                  }}
-                />
-              </button>
-
-              <img src={imageSrc} alt='' />
-            </ModalImage>
-          </div>
-        </div>
+        <CardsInfor />
       </div>
     </div>
   );

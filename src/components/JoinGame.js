@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom'
 import purple_vector from '../images/vector_puple_vector.svg'
 import cancel from '../images/vector_cancel.svg'
 import "../style/JoinGame.css";
