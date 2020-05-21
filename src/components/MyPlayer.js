@@ -16,7 +16,7 @@ const MyPlayer = (props) => {
         stars.push(<img key={i} src={heartWhite} />)
 
     return (
-        <div className="myplayer-card player-card-last">
+        <div className="myplayer-card player-card-last" onClick={(id)=>props.onClick(props.id)}>
             <div className="mydiscard">
                 <Discard mydiscard={props.mydiscard} />
             </div>

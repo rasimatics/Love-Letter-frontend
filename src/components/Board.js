@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import socketIOClient from 'socket.io-client'
 import Player from './Player';
 import MyPlayer from './MyPlayer';
 import koloda from '../images/onboard_assets/Koloda.svg'
 import '../style/Board.css'
+
 import card1 from '../images/love_cards/cards_loveletter-01.svg'
 import card2 from '../images/love_cards/cards_loveletter-02.svg'
 import card3 from '../images/love_cards/cards_loveletter-03.svg'
@@ -38,7 +38,9 @@ const Board = () => {
         socket.on("card-played", data => console.log(data))
         socket.on("play-card", data => console.log(data))
         socket.on("err",data=>console.log(data.msg))
-        socket.on("game-started",data=>console.log(data))
+        socket.on("info",data=>console.log(data))
+        socket.on("player-discarded",data=>console.log(data))
+        socket.on("player-eliminated",data=>console.log(data))
 
         setInterval(() => {
             const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
@@ -164,11 +166,10 @@ const Board = () => {
                             id: id
                         },
                         card: {
-                            id: ""
+                            id: 3
                         }
                     }
                 })
-            alert(turn + " " + parseInt(selected_card[1]) + " " + id)
             setSelected_card()
             setCardClass("")
         }
@@ -192,9 +193,9 @@ const Board = () => {
                 <img className="player two" src={bcard} alt="" />
                 <img className="player three" src={bcard} alt="" />
 
-                {players.map(player => player.id != localStorage.getItem("id") && <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={0} />)}
-
-                <MyPlayer name={localStorage.getItem("nickname")} stars={mystars} mydiscard={[]} />
+                {players.map(player => player.id != localStorage.getItem("id") ? <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={0} />
+                :
+                <MyPlayer key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={0}/>)}
 
                 <div className="right-corner-images">
                     <img className="inHand" src={handCard} onClick={selectCard} alt="" />
