@@ -12,7 +12,7 @@ const MyPlayer = (props) => {
     for (let i = 0; i < props.stars; i++)
         stars.push(<img key={i} src={heartPink} />)
 
-    for (let i = 0; i < 7 - props.stars; i++)
+    for (let i = 0; i < props.tokens_to_win - props.stars; i++)
         stars.push(<img key={i} src={heartWhite} />)
 
     return (
