@@ -18,10 +18,11 @@ const Play = () => {
     };
     const url = "http://104.248.20.1:8080/api/player";
 
-    fetch(url, requestOptions)
-      .then((response) => response.json())
-      .then((data) => localStorage.setItem("id", data.id));
-  };
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => localStorage.setItem("id",data.id))
+        localStorage.setItem("nickname",value)
+    }
 
   return (
     <div className='game-page'>

@@ -1,33 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import purple_vector from '../images/vector_puple_vector.svg'
+import cancel from '../images/vector_cancel.svg'
 import "../style/JoinGame.css";
-import "../style/Shared.css";
-import purple_vector from "../images/vector_puple_vector.svg";
-import cancel from "../images/vector_cancel.svg";
+import '../style/Shared.css'
 import back from "../images/vector_return.svg";
 import jake from "../images/jake_the_dog.svg";
-import socketIOClient from "socket.io-client";
-
-const ENDPOINT = "http://104.248.20.1:8080/";
-const socket = socketIOClient(ENDPOINT);
+import { socket } from '../helpers/socket'
 
 const JoinGame = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("")
+
+  let err = ""
 
   useEffect(() => {
-    socket.on("join-game", (data) => console.log(data));
-  });
+      socket.on("err", data => err=data.msg)
+  })
 
+  //Join to the game
   const handleJoin = () => {
-    socket.emit("join-game", {
-      player: {
-        id: localStorage.getItem("id"),
-      },
-      game: {
-        id: value,
-      },
-    });
-  };
+      localStorage.setItem("gid", value)
+      socket.emit('join-game',
+          {
+              player: {
+                  id: localStorage.getItem("id")
+              },
+              game: {
+                  id: localStorage.getItem("gid")
+              }
+          })
+      setTimeout(() => {
+          if (err === "") {
+              window.open("/game/" + value, "_self")
+          }else {
+              alert(err)
+          }
+      },1000)
+  }
 
   return (
     <div className='game-page'>

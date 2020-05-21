@@ -2,12 +2,14 @@ body {
   overflow: hidden;
 }
 
+
 .player-card {
   background-color: #4f3b62;
   border-radius: 20px;
   width: 30%;
   padding: 15px;
   height: 35vh;
+  z-index: 1;
 }
 
 .crown-container-player {

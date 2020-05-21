@@ -20,7 +20,6 @@ import info from "../images/onboard_assets/info.svg";
 import exitCard from "../images/vector_cancel.svg";
 import Discard from "./Discard";
 
-const ENDPOINT = "http://104.248.20.1:8080";
 
 Modal.setAppElement("#root");
 

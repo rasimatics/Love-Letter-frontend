@@ -11,22 +11,27 @@ const Player = (props) => {
     stars.push(<img src={heartPink} alt='' />);
   }
 
-  for (let i = 0; i < 10 - props.stars; i++) {
-    stars.push(<img src={heartWhite} alt='' />);
-  }
+  let stars = []
+  for (let i = 0; i < props.stars; i++)
+      stars.push(<img key={i} src={heartPink} />)
+
+  for (let i = 0; i < 7 - props.stars; i++)
+      stars.push(<img key={i} src={heartWhite} />)
 
   return (
-    <div className='player-card'>
-      <div className='crown-container-player'>
-        <img src={orangeCrown} alt='' />
+      <div className="player-card" onClick={(id)=>props.onClick(props.id)}>
+          <div className="crown-container">
+              <img src={orangeCrown} />
+          </div>
+          <div className="name-hearts-container">
+              <h4>{props.name}</h4>
+              <div className="hearts-container">
+                  {stars}
+              </div>
+          </div>
+          <Discard mydiscard={props.mydiscard} />
       </div>
-      <div className='name-hearts-container-player'>
-        <h4>{props.name}</h4>
-        <div className='hearts-container-player'>{stars}</div>
-      </div>
-      <Discard mydiscard={props.mydiscard} />
-    </div>
-  );
-};
+  )
+}
 
 export default Player;

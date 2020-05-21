@@ -10,13 +10,13 @@ const MyPlayer = (props) => {
 
     let stars = []
     for (let i = 0; i < props.stars; i++)
-        stars.push(<img src={heartPink} alt='' />)
+        stars.push(<img key={i} src={heartPink} />)
 
-    for (let i = 0; i < 10 - props.stars; i++)
-        stars.push(<img src={heartWhite} alt='' />)
+    for (let i = 0; i < 7 - props.stars; i++)
+        stars.push(<img key={i} src={heartWhite} />)
 
     return (
-        <div className="myplayer-card player-card-last">
+        <div className="myplayer-card player-card-last" onClick={(id)=>props.onClick(props.id)}>
             <div className="mydiscard">
                 <Discard mydiscard={props.mydiscard} />
             </div>

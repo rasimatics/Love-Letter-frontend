@@ -1,13 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import cancel from "../images/vector_cancel.svg";
-import back from "../images/vector_return.svg";
-import dayday from "../images/Dayday_IceKing.svg";
-import purple_vector from "../images/vector_puple_vector.svg";
-import "../style/JoinOrCreateGame.css";
-import "../style/Shared.css";
-
 const JoinOrCreateGame = () => {
+  localStorage.setItem("splitted","false")
   return (
     <div className='game-page'>
       <div className='choose'>Join or Create a game</div>
@@ -35,5 +27,6 @@ const JoinOrCreateGame = () => {
     </div>
   );
 };
+
 
 export default JoinOrCreateGame;

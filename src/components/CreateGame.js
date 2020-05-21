@@ -8,31 +8,54 @@ import elephant from "../images/green_elephant.svg";
 import "../style/CreateGame.css";
 import "../style/Shared.css";
 
+import { socket } from '../helpers/socket'
+
 const CreateGame = () => {
-  const [player, setPlayer] = useState(2);
+    const [player, setPlayer] = useState(2)
 
-  const id = localStorage.getItem("id");
+    const change = (e) => {
+        setPlayer(e.target.value)
+    }
 
-  const change = (e) => {
-    setPlayer(e.target.value);
-  };
+    useEffect(() => {
+        socket.on("err", data => alert(data.msg))
+    })
 
-  const createGame = (e) => {
-    e.preventDefault();
-    localStorage.setItem("n_players", player);
+    //Create a game and then join
+    const createGame = (e) => {
+        e.preventDefault()
 
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ n_players: player, created_by_player_id: id }),
-    };
+        localStorage.setItem("n_players", player)
 
-    const url = "http://104.248.20.1:8080/api/game/";
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ n_players: localStorage.getItem("n_players"), created_by_player_id: localStorage.getItem("id") })
+        }
+        const url = "http://104.248.20.1:8080/api/game/"
 
-    fetch(url, requestOptions)
-      .then((response) => response.json())
-      .then((data) => window.open("/game/" + data.id, "_self"));
-  };
+        let gameID;
+
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data => { gameID = data.id; localStorage.setItem("gid", gameID) })
+
+        setTimeout(() => {
+            socket.emit('join-game',
+                {
+                    player: {
+                        id: localStorage.getItem("id")
+                    },
+                    game: {
+                        id: localStorage.getItem("gid")
+                    }
+                })
+        }, 1000)
+
+        setTimeout(() => {
+            window.open("/game/" + gameID, "_self")
+        }, 2000);
+    }
 
   return (
     <div className='game-page'>
