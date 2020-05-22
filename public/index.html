@@ -24,7 +24,12 @@
     <script>
       document.documentElement.addEventListener("dblclick",()=>{
         document.documentElement.requestFullscreen()
+        if (window.getSelection)
+          window.getSelection().removeAllRanges();
+        else if (document.selection)
+          document.selection.empty();
       })
+    
     </script>
   </body>
 </html>

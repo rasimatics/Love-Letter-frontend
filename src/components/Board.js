@@ -30,6 +30,7 @@ const Board = () => {
   const [cardClass, setCardClass] = useState("")
   const [showCard, setShowCard] = useState()
   const [tokens_to_win, setTokens_to_win] = useState()
+  const [winner, setWinner] = useState()
 
   let n_players = parseInt(localStorage.getItem("n_players"));
 
@@ -54,6 +55,7 @@ const Board = () => {
       });
       fetch(URL).then(response => response.json())
         .then(data => {
+          console.log(data)
           setPlayers(data.players)
           let id = parseInt(localStorage.getItem("id"))
           setTokens_to_win(data.tokens_to_win)
@@ -62,6 +64,12 @@ const Board = () => {
 
           n_players = data.n_players
           setTurn(data.whose_turn_player_id)
+
+          let winner = data.players.find(player => player.tokens_of_af == 1)
+          if (winner) {
+            setWinner(winner.nickname)
+            winTheGame()
+          }
           //split cards 
           if (n_players === data.players.length && localStorage.getItem("splitted") === "false") {
             localStorage.setItem("splitted", "true")
@@ -87,6 +95,13 @@ const Board = () => {
     }, 1000)
 
   }, [])
+
+  const winTheGame = () => {
+    document.getElementsByClassName("winner")[0].style.opacity = 1
+    setTimeout(() => {
+      window.open("/", "_self")
+    }, 3000)
+  }
 
 
   const whichCard = (id) => {
@@ -244,6 +259,19 @@ const Board = () => {
         <img className='player one' src={bcard} alt='' />
         <img className='player two' src={bcard} alt='' />
         <img className='player three' src={bcard} alt='' />
+
+        <h1
+          className="winner"
+          style={{
+            opacity: 0,
+            color: "white",
+            fontSize: "100px",
+            position: "absolute",
+            top: "35%",
+            zIndex: 100
+          }}>
+          {winner} win the game!
+        </h1>
 
         {players.map(player => player.id != localStorage.getItem("id") ?
           <Player key={player.id} id={player.id} onClick={playToPlayer} name={player.nickname} mydiscard={JSON.parse(player.discarded_cards)} stars={player.tokens_of_af} tokens_to_win={tokens_to_win} />

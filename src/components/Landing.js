@@ -13,6 +13,9 @@ import ladder from "../images/leadrer 1_icon.svg";
 
 
 const Landing = () => {
+  setTimeout(() => {
+    alert("Double click for fullscreen")
+  },700)
   return (
     <div className='main'>
       <img className='purple-vector' src={purple_vector} alt='Not Found' />
