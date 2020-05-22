@@ -65,7 +65,7 @@ const Board = () => {
           n_players = data.n_players
           setTurn(data.whose_turn_player_id)
 
-          let winner = data.players.find(player => player.tokens_of_af == 1)
+          let winner = data.players.find(player => player.tokens_of_af == data.tokens_to_win)
           if (winner) {
             setWinner(winner.nickname)
             winTheGame()
