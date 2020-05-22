@@ -10,16 +10,7 @@ import purple_vector from "../images/vector_puple_vector.svg";
 import login from "../images/login_icon.svg";
 import settings from "../images/settings 1_icon.svg";
 import ladder from "../images/leadrer 1_icon.svg";
-import full from "../images/full_screen.svg";
 
-function handleFullScreen(e) {
-  e.preventDefault();
-  var btn = document.getElementById("btnFull");
-
-  btn.addEventListener("click", () => {
-    document.documentElement.requestFullscreen();
-  });
-}
 
 const Landing = () => {
   return (
@@ -47,9 +38,6 @@ const Landing = () => {
           <img className='bottom-img' src={settings} alt='Not Found' />
         </button>
       </div>
-      <button id='btnFull' className='btnFullScreen' onClick={handleFullScreen}>
-        <img src={full} alt='' />
-      </button>
     </div>
   );
 };
