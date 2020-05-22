@@ -41,7 +41,7 @@ const Board = () => {
     socket.on("info", data => console.log(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
-    socket.on("round-over", (data) => console.log(data))
+    socket.on("round-over", (data) => alert(data[0].nickname+" win the round"))
 
     setInterval(() => {
       const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
@@ -148,7 +148,6 @@ const Board = () => {
       setSelected_card(e.target.src.match(/^\d+|\d+\b|\d+(?=\w)/g)[1])
       setCardClass(e.target.className)
     }
-
   }
 
   const [guardguess, setGuardguess] = useState(null)
@@ -162,26 +161,29 @@ const Board = () => {
     if (selected_card) {
       if (parseInt(selected_card[1]) == 1) {
         setmodalGuardIsOpen(true)
-        if (guardguess == null);
-          socket.emit('play-card',
-            {
-              player: {
-                id: turn
-              },
-              card: {
-                id: parseInt(selected_card[1])
-              },
-              target: {
+        setTimeout(() => {
+          if (guardguess !== null) {
+            socket.emit('play-card',
+              {
                 player: {
-                  id: id
+                  id: turn
                 },
                 card: {
-                  id: guardguess
+                  id: parseInt(selected_card[1])
+                },
+                target: {
+                  player: {
+                    id: id
+                  },
+                  card: {
+                    id: guardguess
+                  }
                 }
-              }
-            })
-          setGuardguess(null)
-        
+              })
+            setGuardguess(null)
+          }
+        }, 3000)
+
       }
       else {
         if (selected_card[1] == 2) {
