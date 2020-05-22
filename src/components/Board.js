@@ -13,8 +13,6 @@ import card7 from "../images/love_cards/cards_loveletter-07.svg";
 import card8 from "../images/love_cards/cards_loveletter-08.svg";
 import bcard from "../images/love_cards/cards_loveletter-09.svg";
 import Modal from "react-modal";
-import deck from '../images/deck.svg'
-import ModalImage from "react-modal";
 import { socket } from '../helpers/socket'
 import CardsInfor from "./CardsInfor";
 
@@ -40,7 +38,7 @@ const Board = () => {
     socket.on("card-played", data => console.log(data))
     socket.on("play-card", data => console.log(data))
     socket.on("err", data => alert(data.msg))
-    socket.on("info", data => alert(data))
+    socket.on("info", data => console.log(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
     socket.on("round-over", (data) => console.log(data))
@@ -164,32 +162,30 @@ const Board = () => {
     if (selected_card) {
       if (parseInt(selected_card[1]) == 1) {
         setmodalGuardIsOpen(true)
-        if (guardguess !== null) {
-          setTimeout(() => {
-            socket.emit('play-card',
-              {
+        if (guardguess == null);
+          socket.emit('play-card',
+            {
+              player: {
+                id: turn
+              },
+              card: {
+                id: parseInt(selected_card[1])
+              },
+              target: {
                 player: {
-                  id: turn
+                  id: id
                 },
                 card: {
-                  id: parseInt(selected_card[1])
-                },
-                target: {
-                  player: {
-                    id: id
-                  },
-                  card: {
-                    id: guardguess
-                  }
+                  id: guardguess
                 }
-              })
-            setGuardguess(null)
-          }, 3000)
-        }
+              }
+            })
+          setGuardguess(null)
+        
       }
       else {
         if (selected_card[1] == 2) {
-          if (JSON.parse(players.find(player => player.id === id).discarded_cards).pop() !== 4) {
+          if (JSON.parse(players.find(player => player.id === id).discarded_cards).pop() !== 4 && turn !== id) {
             let priestShow = players.find(player => player.id === id).on_hand_card_id
             priestShowCard(parseInt(localStorage.getItem("id")), priestShow);
 
