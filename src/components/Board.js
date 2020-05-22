@@ -33,6 +33,8 @@ const Board = () => {
 
   let n_players = parseInt(localStorage.getItem("n_players"));
 
+
+
   useEffect(() => {
     socket.on("card-played", data => console.log(data))
     socket.on("play-card", data => console.log(data))
@@ -40,7 +42,10 @@ const Board = () => {
     socket.on("info", data => alert(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
-    socket.on("round-over", (data) => alert(data[0].nickname + " win the round"))
+    socket.on("round-over", (data) => {
+      alert(data[0].nickname + " win the round");
+      alert("New Round Started");
+    })
 
     setInterval(() => {
       const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
