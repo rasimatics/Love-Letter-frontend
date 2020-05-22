@@ -39,10 +39,11 @@ const Board = () => {
   useEffect(() => {
     socket.on("card-played", data => console.log(data))
     socket.on("play-card", data => console.log(data))
-    socket.on("err", data => console.log(data.msg))
-    socket.on("info", data => console.log(data))
+    socket.on("err", data => alert(data.msg))
+    socket.on("info", data => alert(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
+    socket.on("round-over", (data) => alert(data))
 
     setInterval(() => {
       const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
@@ -52,7 +53,6 @@ const Board = () => {
       fetch(URL).then(response => response.json())
         .then(data => {
           setPlayers(data.players)
-          //console.log(data)
           let id = parseInt(localStorage.getItem("id"))
           setTokens_to_win(data.tokens_to_win)
           setHandCard(whichCard(data.players.find(player => player.id === id).on_hand_card_id))
@@ -153,7 +153,7 @@ const Board = () => {
 
   }
 
-  const [guardguess, setGuardguess] = useState()
+  const [guardguess, setGuardguess] = useState(null)
 
   const guardClick = (id) => {
     setGuardguess(id)
@@ -164,30 +164,40 @@ const Board = () => {
     if (selected_card) {
       if (parseInt(selected_card[1]) == 1) {
         setmodalGuardIsOpen(true)
-        setTimeout(() => {
-          socket.emit('play-card',
-            {
-              player: {
-                id: turn
-              },
-              card: {
-                id: parseInt(selected_card[1])
-              },
-              target: {
+        if (guardguess !== null) {
+          setTimeout(() => {
+            socket.emit('play-card',
+              {
                 player: {
-                  id: id
+                  id: turn
                 },
                 card: {
-                  id: guardguess
+                  id: parseInt(selected_card[1])
+                },
+                target: {
+                  player: {
+                    id: id
+                  },
+                  card: {
+                    id: guardguess
+                  }
                 }
-              }
-            })
-        }, 5000)
-        console.log(guardguess)
+              })
+            setGuardguess(null)
+          }, 3000)
+        }
+
+
+
       }
       else {
-        if (selected_card[1] == 2)
-          priestShowCard(parseInt(localStorage.getItem("id")), 3);
+        if (selected_card[1] == 2) {
+          if (JSON.parse(players.find(player => player.id === id).discarded_cards).pop() !== 4) {
+            let priestShow = players.find(player => player.id === id).on_hand_card_id
+            priestShowCard(parseInt(localStorage.getItem("id")), priestShow);
+
+          }
+        }
         socket.emit('play-card',
           {
             player: {
@@ -205,7 +215,6 @@ const Board = () => {
       }
       setSelected_card()
       setCardClass("")
-      setGuardguess()
 
     }
     else {
