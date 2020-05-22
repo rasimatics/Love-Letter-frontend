@@ -314,6 +314,10 @@
   justify-content: center;
   outline: none;
 }
+.guard{
+  right: 28%;
+  top: 25%;
+}
 
 .modal-btn img {
   width: 35px;

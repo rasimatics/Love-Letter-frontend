@@ -13,6 +13,7 @@ import card7 from "../images/love_cards/cards_loveletter-07.svg";
 import card8 from "../images/love_cards/cards_loveletter-08.svg";
 import bcard from "../images/love_cards/cards_loveletter-09.svg";
 import Modal from "react-modal";
+import deck from '../images/deck.svg'
 import { socket } from '../helpers/socket'
 import CardsInfor from "./CardsInfor";
 
@@ -23,13 +24,11 @@ const Board = () => {
   const [handCard, setHandCard] = useState();
   const [newCard, setNewCard] = useState();
   const [modalGuardIsOpen, setmodalGuardIsOpen] = useState(false);
-  const [mystars, setMystars] = useState(0);
   const [players, setPlayers] = useState([])
   const [selected_card, setSelected_card] = useState()
   const [turn, setTurn] = useState()
   const [cardClass, setCardClass] = useState("")
   const [showCard, setShowCard] = useState()
-  const [mydiscard, setMyDiscard] = useState();
   const [tokens_to_win, setTokens_to_win] = useState()
 
   let n_players = parseInt(localStorage.getItem("n_players"));
@@ -41,7 +40,7 @@ const Board = () => {
     socket.on("info", data => console.log(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
-    socket.on("round-over", (data) => alert(data[0].nickname+" win the round"))
+    socket.on("round-over", (data) => alert(data[0].nickname + " win the round"))
 
     setInterval(() => {
       const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
@@ -160,30 +159,26 @@ const Board = () => {
   const playToPlayer = (id) => {
     if (selected_card) {
       if (parseInt(selected_card[1]) == 1) {
-        setmodalGuardIsOpen(true)
-        setTimeout(() => {
-          if (guardguess !== null) {
-            socket.emit('play-card',
-              {
+        if (guardguess !== null) {
+          socket.emit('play-card',
+            {
+              player: {
+                id: turn
+              },
+              card: {
+                id: parseInt(selected_card[1])
+              },
+              target: {
                 player: {
-                  id: turn
+                  id: id
                 },
                 card: {
-                  id: parseInt(selected_card[1])
-                },
-                target: {
-                  player: {
-                    id: id
-                  },
-                  card: {
-                    id: guardguess
-                  }
+                  id: guardguess
                 }
-              })
-            setGuardguess(null)
-          }
-        }, 3000)
-
+              }
+            })
+          setGuardguess(null)
+        }
       }
       else {
         if (selected_card[1] == 2) {
@@ -227,6 +222,10 @@ const Board = () => {
     }
   }
 
+  const guardAction = () => {
+    setmodalGuardIsOpen(true)
+  }
+
 
 
   let url = document.URL;
@@ -257,13 +256,20 @@ const Board = () => {
         <img className='myCard' src={bcard} alt='' />
 
         <div className="right-koloda">
-          <img src={koloda} onClick={() => setmodalGuardIsOpen(true)} alt="" />
+          <img src={koloda} onClick={guardAction} alt="" />
         </div>
 
         <CardsInfor />
 
 
         <div className='modal-container'>
+          <button
+            style={selected_card && selected_card[1] == 1 ? { opacity: 1 } : { opacity: 0 }}
+            className='modal-btn guard'
+            onClick={guardAction}
+          >
+            <img src={deck} alt='' />
+          </button>
           <Modal
             isOpen={modalGuardIsOpen}
             onRequestClose={() => setmodalGuardIsOpen(false)}
