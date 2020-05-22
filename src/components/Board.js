@@ -37,7 +37,7 @@ const Board = () => {
     socket.on("card-played", data => console.log(data))
     socket.on("play-card", data => console.log(data))
     socket.on("err", data => alert(data.msg))
-    socket.on("info", data => console.log(data))
+    socket.on("info", data => alert(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
     socket.on("round-over", (data) => alert(data[0].nickname + " win the round"))
@@ -256,7 +256,7 @@ const Board = () => {
         <img className='myCard' src={bcard} alt='' />
 
         <div className="right-koloda">
-          <img src={koloda} onClick={guardAction} alt="" />
+          <img src={koloda} alt="" />
         </div>
 
         <CardsInfor />
