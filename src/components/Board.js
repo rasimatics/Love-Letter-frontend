@@ -43,7 +43,7 @@ const Board = () => {
     socket.on("info", data => alert(data))
     socket.on("player-discarded", data => console.log(data))
     socket.on("player-eliminated", data => console.log(data))
-    socket.on("round-over", (data) => alert(data))
+    socket.on("round-over", (data) => console.log(data))
 
     setInterval(() => {
       const URL = "http://104.248.20.1:8080/api/game/" + localStorage.getItem("gid")
@@ -69,7 +69,7 @@ const Board = () => {
                 newCardtoMe()
               } else {
                 switch (n_players) {
-                  case 2: playerTwoCard()
+                  case 2: playerOneCard()
                   case 3: playerOneCard()
                   case 4: playerOneCard()
                 }
@@ -186,9 +186,6 @@ const Board = () => {
             setGuardguess(null)
           }, 3000)
         }
-
-
-
       }
       else {
         if (selected_card[1] == 2) {
