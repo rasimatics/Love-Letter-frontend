@@ -1,4 +1,4 @@
-# Love Letter Fronted
+# Love Letter Project Frontend written in React
 
 ### Install requirements:
 
